@@ -236,6 +236,15 @@ table.matriz { min-width: 360px; background: var(--bg); table-layout: fixed; }
 
 .refs { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; font-size: .95rem; }
 .refs li { border-left: 3px solid var(--line); padding-left: 12px; }
+/* guia para professores */
+[id^="guia-"] { scroll-margin-top: 110px; }
+[id^="guia-"]:focus { outline: none; }
+.sumario-guia { margin: 0; padding-left: 1.4em; display: grid; gap: 4px; }
+.lista-guia { margin: 0; padding-left: 1.2em; display: grid; gap: 10px; }
+.tabela-guia td:first-child { min-width: 9.5em; }
+.tabela-guia td { font-size: .93rem; }
+.nota-guia { margin-top: 14px; color: var(--muted); max-width: 72ch; }
+.fonte-guia { font-size: .88rem; color: var(--muted); }
 .equipe { columns: 2 220px; column-gap: 28px; margin: 0; padding-left: 1.1em; font-size: .95rem; }
 
 /* navegação entre páginas */
@@ -328,7 +337,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
           <a class="atalho" href="#galeria"><img src="img/cena-video-poster.jpg" alt=""><div><strong>Fotos e vídeos</strong><span>Registros de cena e gravações das apresentações.</span></div></a>
           <a class="atalho" href="#publico"><img src="img/tartaruga-1.jpg" alt="" style="object-position:center 25%"><div><strong>O público</strong><span>As perguntas feitas pela personagem Tartaruga.</span></div></a>
           <a class="atalho" href="#pesquisa"><img src="img/palco-4.jpg" alt=""><div><strong>A pesquisa</strong><span>A/r/tografia e a matriz dialógico-problematizadora.</span></div></a>
-          <a class="atalho" href="#professores"><img src="img/tartaruga-3.jpg" alt="" style="object-position:center 25%"><div><strong>Para professores</strong><span>Como criar um roteiro de teatro científico.</span></div></a>
+          <a class="atalho" href="#professores"><img src="img/tartaruga-3.jpg" alt="" style="object-position:center 25%"><div><strong>Para professores</strong><span>Guia para levar a peça à sala de aula.</span></div></a>
         </div>
       </div>
     </section>
@@ -467,11 +476,133 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
 
   <!-- ===================== PROFESSORES ===================== -->
   <div class="view" id="professores" data-titulo="Para professores" hidden>
-    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Para professores</p><h1>Para professores</h1><p>Como criar um roteiro de teatro científico.</p></div></div>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Para professores</p><h1>Guia para professores</h1><p>Como levar a peça para a sala de aula e criar um roteiro de teatro científico com a turma.</p></div></div>
     <section class="bloco-sec">
       <div class="container">
         <div class="sec-titulo">
           <p class="objetivo"><b>Objetivo 5 da tese:</b> sistematizar o processo de criação em um material pedagógico para professores.</p>
+          <p class="lead">Este guia reúne o que aprendemos ao escrever, encenar e conversar com o público de “Sete ensaios depois do fim do mundo”. Ele serve para levar a peça, ou partes dela, para a sala de aula e para criar com os estudantes um roteiro de teatro científico.</p>
+          <p><a class="btn" href="guia-professores.pdf" download>Baixar o guia em PDF</a></p>
+        </div>
+        <ol class="sumario-guia">
+          <li><a href="#guia-peca">A peça em sala de aula</a></li>
+          <li><a href="#guia-antes">Antes da peça</a></li>
+          <li><a href="#guia-ensaios">Os sete ensaios e as questões que eles abrem</a></li>
+          <li><a href="#guia-depois">Depois da peça</a></li>
+          <li><a href="#guia-acesso">Acessibilidade desde o planejamento</a></li>
+          <li><a href="#guia-criar">Criar um roteiro com a turma</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="bloco-sec faixa" id="guia-peca">
+      <div class="container duas-col">
+        <div class="texto">
+          <h2>A peça em sala de aula</h2>
+          <p>Uma sala de universidade parece ser o último lugar que restou depois do fim do mundo. Presos nela, uma orientadora cega e seu aluno aplicam o método científico para descobrir o que aconteceu: a cada ensaio, testam uma hipótese, da mais absurda à mais próxima da nossa realidade. Uma zeladora, intérprete de Libras, acompanha tudo, anuncia as cenas e, no final, propõe a saída que os dois não conseguiram encontrar.</p>
+          <p>A peça pode ser usada de três formas: assistir a uma apresentação do Grupo de Teatro Científico da UEPG, assistir aos vídeos das cenas disponíveis neste site ou ler e encenar trechos do roteiro com a turma.</p>
+        </div>
+        <div class="texto">
+          <h3>Para quem e quando</h3>
+          <ul class="lista-guia">
+            <li>Ensino médio, educação de jovens e adultos, ensino superior e formação de professores.</li>
+            <li>Ciências, Biologia, Química, Física, Geografia, Sociologia, Filosofia, Arte e Língua Portuguesa, de preferência em trabalho conjunto.</li>
+            <li>Com os vídeos, é possível trabalhar uma cena por aula.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco-sec" id="guia-antes">
+      <div class="container duas-col">
+        <div class="texto">
+          <h2>Antes da peça</h2>
+          <p>Comece com uma roda de conversa. Nas apresentações de 2026, uma personagem fez as perguntas ao lado ao público antes da peça. As respostas mostraram uma preocupação ambiental centrada em ações individuais, como separar o lixo e economizar água, e pouca relação entre ciência, tecnologia e mudança social. Vale registrar o que a turma responde, para comparar depois.</p>
+          <p>Não há resposta certa. O objetivo é que os estudantes digam o que pensam antes de ver a peça.</p>
+        </div>
+        <ul class="perguntas">
+          <li><b>Ciência e arte</b>Pensando na sua rotina, quais conteúdos que misturam ciência e arte costumam chamar a sua atenção?</li>
+          <li><b>Meio ambiente</b>Como você enxerga o seu papel na preservação da humanidade e dos ecossistemas?</li>
+          <li><b>Meio ambiente</b>De que maneira o uso das tecnologias que você consome afeta a natureza?</li>
+          <li><b>Meio ambiente</b>Se imaginasse a Terra totalmente saudável, mas sem os seres humanos, como seria esse cenário?</li>
+          <li><b>Fim do mundo</b>O que vem à sua mente quando você pensa na possibilidade de um “fim do mundo”?</li>
+          <li><b>Fim do mundo</b>Como tecnologias sustentáveis poderiam mudar nossos hábitos de consumo para adiar esse fim?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bloco-sec faixa" id="guia-ensaios">
+      <div class="container">
+        <div class="sec-titulo">
+          <h2>Os sete ensaios e as questões que eles abrem</h2>
+          <p class="lead">Cada ensaio é um experimento mental. As referências entre aspas são as que a Zeladora anuncia em cena.</p>
+        </div>
+        <div class="tabela-wrap">
+          <table class="tabela-guia">
+            <thead><tr><th scope="col">Cena</th><th scope="col">Hipótese testada</th><th scope="col">Para discutir com a turma</th></tr></thead>
+            <tbody>
+              <tr><td>3 · Ensaio 1<br><b>O apocalipse alien</b></td><td>Uma civilização mais avançada encontra a humanidade. “Livremente inspirada no Paradoxo de Fermi.”</td><td>Por que ainda não encontramos vida inteligente fora da Terra? Trabalho, liberdade e o preço do conforto.</td></tr>
+              <tr><td>4 · Ensaio 2<br><b>A Terra marteformada</b></td><td>“Uma brincadeira de mau gosto com o desejo humano de terraformar Marte.”</td><td>O que é terraformação? Faz sentido procurar outro planeta em vez de cuidar deste?</td></tr>
+              <tr><td>5 · Ensaio 3<br><b>A guerra biológica</b></td><td>“Livremente inspirada no conceito de terceirização das atividades meio.”</td><td>Armas biológicas, ética na pesquisa científica e decisões que ninguém assume.</td></tr>
+              <tr><td>6 · Ensaio 4<br><b>A grande fome</b></td><td>Os próprios autores avisam que não encontraram conceito científico que justificasse esse fim.</td><td>A fome é um problema de produção ou de distribuição de alimentos?</td></tr>
+              <tr><td>7 · Ensaio 5<br><b>A doença fatal</b></td><td>“Livremente inspirado na obra ‘A Peste’, de Albert Camus”, a cena explora a vacinação como estratégia de saúde pública.</td><td>Como funcionam as vacinas? Por que algumas pessoas recusam a vacinação?</td></tr>
+              <tr><td>8 · Ensaio 6<br><b>Pandemia</b></td><td>“Livremente inspirada no livro ‘O amanhã não está à venda’, de Ailton Krenak.”</td><td>O que vivemos entre 2020 e 2022. Zoonoses, desinformação e o papel da ciência e da universidade pública.</td></tr>
+              <tr><td>9 · Ensaio 7<br><b>Emergência climática</b></td><td>Décadas de exploração de recursos e evidências de aquecimento que a população via e não aceitava.</td><td>Que evidências temos do aquecimento global? Por que é tão difícil agir, mesmo sabendo?</td></tr>
+              <tr><td>10<br><b>O que podemos fazer quando o céu pesa sobre nós?</b></td><td>A Zeladora lembra o avô indígena: quando o céu estava baixo, os antigos cantavam e dançavam para suspendê-lo.</td><td>O que significa “suspender o céu”? O que os povos indígenas têm a dizer sobre a relação entre ser humano e natureza?</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="nota-guia">A repetição da estrutura é proposital: a turma pode prever o que vai acontecer em cada ensaio e prestar atenção no que muda. O cenário também diminui a cada cena, até o céu cair no final.</p>
+      </div>
+    </section>
+
+    <section class="bloco-sec" id="guia-depois">
+      <div class="container duas-col">
+        <div class="texto">
+          <h2>Depois da peça</h2>
+          <p>Retome as respostas da roda de conversa e pergunte o que mudou. Depois das apresentações, o público passou a relacionar as cenas com a pandemia, com a desinformação e com a emergência climática, e a falar do papel social da ciência. Essas são boas portas de entrada para a aula seguinte.</p>
+          <h3>Perguntas para a conversa</h3>
+          <ul class="perguntas">
+            <li><b>Memória</b>Agora que a peça acabou, quais momentos, cenas ou personagens mais ficaram na sua memória?</li>
+            <li><b>Ciência</b>Depois do que você viu no palco, mudou a sua percepção sobre o poder do conhecimento científico para “salvar o mundo”?</li>
+            <li><b>Cenários</b>Qual dos cenários sobre o fim do mundo é o mais provável de acontecer na realidade? Por quê?</li>
+            <li><b>Krenak</b>O que significa “suspender o céu”? A humanidade ainda pode fazer algo para suspender o céu?</li>
+          </ul>
+          <p class="nota-guia">As duas primeiras perguntas foram feitas ao público depois das apresentações de 2026. As outras duas vêm do questionário da ação interventiva elaborado na pesquisa.</p>
+        </div>
+        <div class="texto">
+          <h3>Atividades</h3>
+          <ul class="lista-guia">
+            <li><b>Investigar uma hipótese.</b> Cada grupo escolhe um ensaio e pesquisa a ciência por trás dele: o Paradoxo de Fermi, a terraformação, as vacinas, as zoonoses, as evidências do aquecimento global. O grupo apresenta o que é fato, o que é hipótese e o que é ficção na cena.</li>
+            <li><b>Ler Krenak.</b> Leitura de trechos de “Ideias para adiar o fim do mundo” e “O amanhã não está à venda”, comparando com o desfecho da peça.</li>
+            <li><b>Checar informações.</b> A partir do Ensaio 7, a turma reúne notícias falsas sobre clima ou vacinas e verifica em fontes científicas.</li>
+            <li><b>Escrever o oitavo ensaio.</b> Que outra hipótese de fim do mundo a turma testaria hoje? Os estudantes escrevem a cena seguindo a estrutura da peça e os passos da seção “Criar um roteiro com a turma”.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco-sec faixa" id="guia-acesso">
+      <div class="container duas-col">
+        <div class="texto">
+          <h2>Acessibilidade desde o planejamento</h2>
+          <p>A peça foi escrita na perspectiva do Desenho Universal: a acessibilidade está no texto, e não foi acrescentada depois. Uma das personagens é intérprete de Libras e traduz as falas em cena, e a orientadora que conduz o método científico é cega. O mesmo princípio vale para a aula.</p>
+        </div>
+        <ul class="lista-guia">
+          <li>Se houver estudantes surdos, combine com o intérprete da escola antes da aula e posicione-o em um lugar que a turma toda veja. Nas entrevistas, um espectador surdo participou em Libras, com a interpretação de um colega.</li>
+          <li>Ao exibir os vídeos, descreva em voz alta o cenário, os figurinos e o que acontece sem fala, como a queda do céu no final.</li>
+          <li>Ofereça mais de uma forma de participar: falar, sinalizar, escrever, desenhar ou encenar.</li>
+          <li>Avise a turma sobre a estrutura que se repete e sobre a queda do cenário no final. Saber o que vem ajuda estudantes autistas ou com TDAH.</li>
+          <li>Objetos que podem ser tocados ajudam a mediar a conversa. Nas entrevistas, usamos uma tartaruga impressa em 3D.</li>
+          <li>Este site tem tradução automática para Libras pelo VLibras, ajuste do tamanho do texto e alto contraste. A tradução automática ajuda, mas não substitui um intérprete.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bloco-sec" id="guia-criar">
+      <div class="container">
+        <div class="sec-titulo">
+          <h2>Criar um roteiro com a turma</h2>
           <p class="lead">A ordem de tarefas que funcionou na criação de “Sete ensaios depois do fim do mundo”, apresentada no XV ENPEC, em Belém, em 2025.</p>
         </div>
         <ol class="passos">
@@ -482,10 +613,16 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
           <li><h3>Poucas personagens, um só lugar</h3><p>Orientadora, aluno e zeladora, numa sala da universidade, cada uma com uma marca de acessibilidade.</p></li>
           <li><h3>Repita a estrutura</h3><p>Cada ensaio testa uma hipótese, da mais absurda à mais real. A repetição também pode dar conforto a espectadores autistas ou com TDAH.</p></li>
           <li><h3>Feche com uma imagem forte</h3><p>O desfecho veio de um alerta indígena: cantar e dançar para suspender o céu.</p></li>
-          <li><h3>Escreva a acessibilidade junto</h3><p>Libras em cena, uma protagonista cega e audiodescrição fazem parte do texto desde o primeiro rascunho.</p></li>
+          <li><h3>Escreva a acessibilidade junto</h3><p>Libras em cena e uma protagonista cega fazem parte do texto desde o primeiro rascunho.</p></li>
         </ol>
+        <div class="texto" style="margin-top:28px">
+          <h3>Para montar a peça</h3>
+          <p>O roteiro está registrado na Fundação Biblioteca Nacional e integra a tese. São três personagens: Orientadora, Aluno e Zeladora. Os narradores da Cena 2 apresentam o grupo e podem ser retirados em outras montagens. O cenário diminui ao final de cada ensaio, inclusive o teto, que cai no fim da peça.</p>
+          <p class="fonte-guia">Para citar: KUHN, T. C. G. <i>Teatro em designer universal: a relação humano e natureza pautada na educação CTS</i>. Tese (Doutorado em Ensino de Ciência e Tecnologia) – Universidade Tecnológica Federal do Paraná, Ponta Grossa, 2026.</p>
+        </div>
       </div>
     </section>
+
   </div>
 
   <!-- ===================== PUBLICAÇÕES ===================== -->
@@ -558,7 +695,12 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
   var ids = views.map(function (v) { return v.id; });
   var pag = document.getElementById('paginacao');
   function mostra(id, foco) {
-    if (ids.indexOf(id) < 0) id = 'inicio';
+    var alvo = null;
+    if (ids.indexOf(id) < 0) {
+      /* âncora dentro de uma página (ex.: seções do guia para professores) */
+      var el = id && document.getElementById(id), v = el && el.closest('.view');
+      if (v) { alvo = el; id = v.id; } else id = 'inicio';
+    }
     views.forEach(function (v) { v.hidden = v.id !== id; });
     Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
       if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
@@ -569,7 +711,8 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     pag.innerHTML = html;
     document.title = (id === 'inicio' ? '' : document.getElementById(id).dataset.titulo + ' · ') + 'Sete Ensaios em Cena';
     menu.classList.remove('aberto'); mb.setAttribute('aria-expanded', 'false');
-    window.scrollTo(0, 0);
+    if (!alvo) window.scrollTo(0, 0);
+    if (alvo) { alvo.setAttribute('tabindex', '-1'); alvo.scrollIntoView({ behavior: 'instant' }); alvo.focus({ preventScroll: true }); return; }
     if (foco) { var h = document.getElementById(id).querySelector('h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
   }
   window.addEventListener('hashchange', function () { mostra(location.hash.slice(1), true); });
