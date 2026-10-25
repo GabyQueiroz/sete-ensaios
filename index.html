@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@500;700&display=swap">
 <style>
-/* Layout: site institucional — barra de acessibilidade, cabeçalho com menu, foto de abertura, seções em faixas alternadas, rodapé escuro */
+/* Layout: site institucional com páginas internas (#inicio, #peca, ...) — barra de acessibilidade, cabeçalho com menu, uma página visível por vez, rodapé escuro */
 :root {
   --bg: #ffffff;
   --band: #f1f4f8;
@@ -18,7 +18,7 @@
   --line: #d9dfe8;
   --brand: #1f4a7c;        /* azul jeans do figurino */
   --brand-dark: #14325a;
-  --kraft: #b98b4e;        /* papelão do cenário */
+  --kraft: #9c6f33;        /* papelão do cenário */
   --kraft-soft: #f6efe4;
   --on-brand: #ffffff;
   --footer: #101b2d;
@@ -45,11 +45,10 @@
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: var(--fs); line-height: 1.65; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--brand-dark); }
-img { max-width: 100%; display: block; }
+img, video, iframe { max-width: 100%; display: block; }
 a { color: var(--brand); }
 :focus-visible { outline: 3px solid var(--kraft); outline-offset: 2px; }
 h1, h2, h3 { font-family: var(--head); line-height: 1.2; margin: 0; text-wrap: balance; }
@@ -60,55 +59,59 @@ p { margin: 0; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--bg); padding: 8px 12px; z-index: 50; }
 .skip:focus { left: 8px; }
 
-/* barra de acessibilidade */
 .util { background: var(--brand-dark); color: var(--on-brand); font-size: .85rem; }
 .util .container { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding-block: 6px; }
 .util a { color: var(--on-brand); }
-.util-links { display: flex; gap: 14px; flex-wrap: wrap; }
+.util-links { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
 .util-tools { display: flex; gap: 6px; align-items: center; }
 .util-tools button { font: inherit; font-weight: 700; color: var(--on-brand); background: transparent; border: 1px solid currentColor; border-radius: 3px; padding: 2px 9px; cursor: pointer; }
 .util-tools button[aria-pressed="true"] { background: var(--on-brand); color: var(--brand-dark); }
-.libras-note { opacity: .9; }
 
-/* cabeçalho */
 .site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
 .site-head .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
 .logo { display: grid; text-decoration: none; color: var(--ink); line-height: 1.15; }
 .logo strong { font-family: var(--head); font-size: 1.15rem; }
 .logo span { font-size: .8rem; color: var(--muted); }
-.menu { display: flex; gap: 4px; flex-wrap: wrap; }
-.menu a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: .92rem; padding: 6px 10px; border-radius: 3px; }
-.menu a:hover, .menu a[aria-current="true"] { background: var(--band); color: var(--brand); }
+.menu { display: flex; gap: 2px; flex-wrap: wrap; }
+.menu a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: .92rem; padding: 6px 10px; border-radius: 3px; border-bottom: 3px solid transparent; }
+.menu a:hover { background: var(--band); }
+.menu a[aria-current="page"] { color: var(--brand); border-bottom-color: var(--brand); border-radius: 3px 3px 0 0; }
 .menu-btn { display: none; font: inherit; font-weight: 700; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 3px; padding: 6px 12px; cursor: pointer; }
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .menu-btn { display: inline-block; }
   .menu { display: none; width: 100%; flex-direction: column; }
   .menu.aberto { display: flex; }
 }
 
+/* cabeçalho de página interna */
+.page-head { background: var(--band); border-bottom: 1px solid var(--line); padding-block: 28px 24px; }
+.trilha { font-size: .85rem; color: var(--muted); margin-bottom: 6px; }
+.trilha a { color: var(--muted); }
+.page-head h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.page-head p { margin-top: 8px; color: var(--muted); max-width: 70ch; }
+
 /* abertura */
 .hero { position: relative; color: #fff; background: #0b111b; }
-.hero img { width: 100%; height: clamp(340px, 52vw, 560px); object-fit: cover; object-position: center 35%; opacity: .78; }
+.hero img { width: 100%; height: clamp(340px, 50vw, 540px); object-fit: cover; object-position: center 35%; opacity: .78; }
 .hero-text { position: absolute; inset: auto 0 0 0; background: linear-gradient(180deg, transparent, rgba(5, 10, 20, .88) 45%); padding-block: 90px 36px; }
 .hero h1 { font-size: clamp(2rem, 5.2vw, 3.4rem); max-width: 18ch; }
 .hero p { margin-top: 12px; max-width: 60ch; font-size: 1.08rem; color: #e9eef6; }
 .hero .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-.btn { display: inline-block; font: inherit; font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 3px; border: 2px solid var(--brand); background: var(--brand); color: var(--on-brand); cursor: pointer; }
-.btn.claro { background: transparent; color: #fff; border-color: #fff; }
-.btn.contorno { background: transparent; color: var(--brand); }
+.hero .credito { position: absolute; right: 12px; top: 10px; font-size: .75rem; color: #d7dfeb; background: rgba(0,0,0,.45); padding: 2px 8px; }
 @media (max-width: 700px) {
   .hero img { height: 230px; opacity: .9; }
   .hero-text { position: static; background: #0b111b; padding-block: 22px 30px; }
 }
-.hero .credito { position: absolute; right: 12px; top: 10px; font-size: .75rem; color: #d7dfeb; background: rgba(0,0,0,.45); padding: 2px 8px; }
+.btn { display: inline-block; font: inherit; font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 3px; border: 2px solid var(--brand); background: var(--brand); color: var(--on-brand); cursor: pointer; }
+.btn.claro { background: transparent; color: #fff; border-color: #fff; }
+.btn.contorno { background: transparent; color: var(--brand); }
 
-/* seções */
-section { padding-block: clamp(44px, 7vw, 76px); scroll-margin-top: 80px; }
+section.bloco-sec { padding-block: clamp(36px, 6vw, 64px); }
 section.faixa { background: var(--band); }
-.sec-titulo { display: grid; gap: 10px; margin-bottom: 28px; max-width: 72ch; }
+.sec-titulo { display: grid; gap: 10px; margin-bottom: 26px; max-width: 72ch; }
 .rotulo { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kraft); }
 .lead { color: var(--muted); font-size: 1.05rem; }
-.objetivo { font-size: .9rem; background: var(--kraft-soft); border-left: 4px solid var(--kraft); padding: 8px 12px; }
+.objetivo { font-size: .9rem; background: var(--kraft-soft); border-left: 4px solid var(--kraft); padding: 8px 12px; max-width: 72ch; }
 
 .duas-col { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: start; }
 @media (max-width: 860px) { .duas-col { grid-template-columns: 1fr; } }
@@ -120,10 +123,20 @@ figcaption { font-size: .82rem; color: var(--muted); margin-top: 6px; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
 .card { background: var(--bg); border: 1px solid var(--line); border-top: 4px solid var(--brand); padding: 20px; display: grid; gap: 8px; align-content: start; }
-.faixa .card { background: var(--bg); }
 .card .meta { font-size: .8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
 
-/* cenas */
+/* atalhos da página inicial */
+.atalhos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .atalhos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .atalhos { grid-template-columns: 1fr; } }
+.atalho { display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--ink); background: var(--bg); border: 1px solid var(--line); }
+.atalho img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.atalho div { padding: 14px 16px 16px; display: grid; gap: 4px; align-content: start; }
+.atalho strong { font-family: var(--head); font-size: 1.1rem; color: var(--brand); }
+.atalho span { font-size: .92rem; color: var(--muted); }
+.atalho:hover { border-color: var(--brand); }
+.atalho:hover strong { text-decoration: underline; }
+
 .cenas { margin-top: 36px; border-top: 1px solid var(--line); }
 .cenas details { border-bottom: 1px solid var(--line); }
 .cenas summary { cursor: pointer; padding: 14px 4px; display: grid; grid-template-columns: 5.2em minmax(0, 1fr) auto; gap: 12px; align-items: baseline; list-style: none; }
@@ -137,7 +150,6 @@ figcaption { font-size: .82rem; color: var(--muted); margin-top: 6px; }
 @media (max-width: 600px) { .cenas .corpo { padding-left: 4px; } .cenas summary { grid-template-columns: 4em minmax(0, 1fr) auto; } }
 .rubrica { font-style: italic; color: var(--muted); }
 
-/* números + tabela */
 .numeros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 28px; }
 @media (max-width: 760px) { .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .numeros div { background: var(--bg); border: 1px solid var(--line); padding: 16px; }
@@ -154,20 +166,48 @@ td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .premio { display: inline-block; font-size: .8rem; font-weight: 700; color: var(--ink); background: var(--kraft-soft); border: 1px solid var(--kraft); border-radius: 3px; padding: 0 6px; }
 .barra { height: 8px; background: var(--line); margin-top: 6px; min-width: 80px; }
 .barra i { display: block; height: 100%; background: var(--brand); }
-.links-video { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 
 /* galeria */
-.galeria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-@media (max-width: 760px) { .galeria { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.galeria button { padding: 0; border: 0; background: none; cursor: zoom-in; }
-.galeria img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.galeria { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 900px) { .galeria { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .galeria { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.galeria button { padding: 0; border: 0; background: none; cursor: zoom-in; position: relative; }
+.galeria img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .galeria .alta img { object-position: center 20%; }
-.lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(5, 9, 16, .92); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-.lightbox img { max-height: 82vh; width: auto; }
-.lightbox p { color: #e5ebf3; margin-top: 8px; font-size: .9rem; text-align: center; }
-.lightbox button { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); font: inherit; font-weight: 700; background: #fff; color: #000; border: 0; border-radius: 3px; padding: 6px 12px; cursor: pointer; }
+.galeria button:hover img, .galeria button:focus-visible img { opacity: .85; }
+body.lb-aberto #vlibras-access-wrapper, body.lb-aberto [vw] { display: none !important; }
+body.lb-aberto { overflow: hidden; }
+.lightbox { position: fixed; inset: 0; z-index: 2147483000; background: rgba(5, 9, 16, .95); display: grid; grid-template-rows: auto 1fr auto; padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); color: #e5ebf3; }
+.lb-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.lb-contador { font-size: .9rem; font-variant-numeric: tabular-nums; }
+.lb-palco { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; min-height: 0; }
+.lb-palco figure { display: grid; justify-items: center; gap: 8px; min-height: 0; }
+.lb-palco img { max-height: 76vh; width: auto; object-fit: contain; }
+.lb-palco figcaption { color: #e5ebf3; text-align: center; font-size: .95rem; max-width: 70ch; }
+.lightbox button { font: inherit; font-weight: 700; background: #fff; color: #0b111b; border: 0; border-radius: 3px; padding: 8px 14px; cursor: pointer; }
+.lightbox .nav { width: 48px; height: 64px; font-size: 1.6rem; padding: 0; background: rgba(255,255,255,.14); color: #fff; }
+.lightbox .nav:hover { background: rgba(255,255,255,.28); }
+.lb-miniaturas { display: flex; gap: 6px; justify-content: center; overflow-x: auto; padding-top: 10px; }
+.lb-miniaturas button { padding: 0; background: none; border: 2px solid transparent; flex: 0 0 auto; }
+.lb-miniaturas img { width: 64px; height: 44px; object-fit: cover; opacity: .6; }
+.lb-miniaturas button[aria-current="true"] { border-color: #fff; }
+.lb-miniaturas button[aria-current="true"] img { opacity: 1; }
+@media (max-width: 600px) { .lightbox .nav { width: 38px; height: 52px; } .lb-miniaturas { display: none; } }
 
-/* público */
+/* vídeos */
+.videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 760px) { .videos { grid-template-columns: 1fr; } }
+.video-card { background: var(--bg); border: 1px solid var(--line); display: grid; }
+.video-card .tela { position: relative; aspect-ratio: 16 / 9; background: #0b111b; }
+.video-card .tela iframe, .video-card .tela video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-card .tela a, .video-card .tela .yt { position: absolute; inset: 0; display: grid; place-items: center; text-decoration: none; color: #fff; border: 0; padding: 0; background: #0b111b; cursor: pointer; font: inherit; width: 100%; }
+.video-card .tela a img, .video-card .tela .yt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+.video-card .tela a span, .video-card .tela .yt span { position: relative; background: var(--brand); color: var(--on-brand); font-weight: 700; padding: 10px 16px; border-radius: 3px; }
+.video-card .tela .yt:hover img { opacity: .7; }
+.video-card .info a { font-size: .9rem; }
+.video-card div.info { padding: 12px 16px 16px; display: grid; gap: 4px; }
+.video-card div.info span { font-size: .9rem; color: var(--muted); }
+
 .abas { display: flex; gap: 0; border-bottom: 2px solid var(--brand); }
 .abas button { font: inherit; font-weight: 700; padding: 8px 16px; border: 0; background: transparent; color: var(--muted); cursor: pointer; border-radius: 3px 3px 0 0; }
 .abas button[aria-selected="true"] { background: var(--brand); color: var(--on-brand); }
@@ -177,7 +217,6 @@ td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .aviso { font-size: .9rem; color: var(--muted); border-left: 4px solid var(--line); padding-left: 12px; }
 ol.simples { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
 
-/* matriz */
 .matriz-wrap { overflow-x: auto; }
 table.matriz { min-width: 360px; background: var(--bg); table-layout: fixed; }
 .matriz th { padding: 8px 4px; font-size: .72rem; text-align: center; }
@@ -189,7 +228,6 @@ table.matriz { min-width: 360px; background: var(--bg); table-layout: fixed; }
 .matriz-q { margin-top: 14px; background: var(--bg); border: 1px solid var(--line); border-left: 4px solid var(--brand); padding: 14px 16px; display: grid; gap: 4px; }
 .matriz-q .cod { font-size: .85rem; color: var(--muted); font-weight: 700; }
 
-/* passos */
 .passos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; counter-reset: p; }
 @media (max-width: 760px) { .passos { grid-template-columns: 1fr; } }
 .passos li { counter-increment: p; background: var(--bg); border: 1px solid var(--line); padding: 16px 18px 16px 64px; position: relative; display: grid; gap: 4px; }
@@ -199,6 +237,13 @@ table.matriz { min-width: 360px; background: var(--bg); table-layout: fixed; }
 .refs { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; font-size: .95rem; }
 .refs li { border-left: 3px solid var(--line); padding-left: 12px; }
 .equipe { columns: 2 220px; column-gap: 28px; margin: 0; padding-left: 1.1em; font-size: .95rem; }
+
+/* navegação entre páginas */
+.paginacao { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-block: 22px 40px; }
+.paginacao a { display: grid; gap: 2px; text-decoration: none; padding: 10px 14px; border: 1px solid var(--line); border-radius: 3px; min-width: 200px; }
+.paginacao a span { font-size: .8rem; color: var(--muted); }
+.paginacao a strong { color: var(--brand); }
+.paginacao a.prox { text-align: right; margin-left: auto; }
 
 footer { background: var(--footer); color: var(--footer-ink); padding-block: 40px; font-size: .9rem; }
 footer .container { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
@@ -215,9 +260,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
 <div class="util">
   <div class="container">
     <div class="util-links">
-      <a href="#conteudo">Conteúdo</a>
-      <a href="#menu-principal">Menu</a>
-      <span class="libras-note">Libras: clique no ícone azul de mãos (VLibras) e depois no texto que quiser traduzir</span>
+      <span>Libras: clique no ícone azul de mãos (VLibras) e depois no texto que quiser traduzir</span>
     </div>
     <div class="util-tools" role="group" aria-label="Recursos de acessibilidade">
       <button type="button" id="fonte-menos" aria-label="Diminuir texto">A−</button>
@@ -232,10 +275,10 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     <a class="logo" href="#inicio"><strong>Sete Ensaios Depois do Fim do Mundo</strong><span>Teatro científico em desenho universal · PPGECT/UTFPR e GTC/UEPG</span></a>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <a href="#sobre">Sobre</a>
+      <a href="#inicio">Início</a>
       <a href="#peca">A peça</a>
       <a href="#apresentacoes">Apresentações</a>
-      <a href="#galeria">Galeria</a>
+      <a href="#galeria">Fotos e vídeos</a>
       <a href="#publico">Público</a>
       <a href="#pesquisa">Pesquisa</a>
       <a href="#professores">Para professores</a>
@@ -244,137 +287,174 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
   </div>
 </header>
 
-<main id="conteudo">
-  <div class="hero" id="inicio">
-    <img src="img/palco-2.jpg" alt="Cena da peça em palco escuro: o céu, feito de tecidos e plásticos em tons de azul, está suspenso sobre os atores e o cenário de papelão.">
-    <span class="credito">Foto: GTC/UEPG, 29/06/2026</span>
-    <div class="hero-text">
-      <div class="container">
-        <h1>O que podemos fazer quando o céu pesa sobre nós?</h1>
-        <p>Uma peça de teatro científico, inspirada em Ailton Krenak, escrita para ser acessível a pessoas surdas, cegas e ouvintes desde o roteiro. Produto educacional da tese de doutorado de Talicia do Carmo Galan Kuhn.</p>
-        <div class="acoes">
-          <a class="btn" href="https://youtu.be/kkxSLYLSglI" target="_blank" rel="noopener">Assistir à estreia</a>
-          <a class="btn claro" href="#sobre">Conhecer a pesquisa</a>
+<main id="conteudo" tabindex="-1">
+
+  <!-- ===================== INÍCIO ===================== -->
+  <div class="view" id="inicio" data-titulo="Início">
+    <div class="hero">
+      <img src="img/palco-2.jpg" alt="Cena da peça em palco escuro: o céu, feito de tecidos e plásticos em tons de azul, está suspenso sobre os atores e o cenário de papelão.">
+      <span class="credito">Foto: GTC/UEPG, 29/06/2026</span>
+      <div class="hero-text">
+        <div class="container">
+          <h1>O que podemos fazer quando o céu pesa sobre nós?</h1>
+          <p>Uma peça de teatro científico, inspirada em Ailton Krenak, escrita para ser acessível a pessoas surdas, cegas e ouvintes desde o roteiro. Produto educacional da tese de doutorado de Talicia do Carmo Galan Kuhn.</p>
+          <div class="acoes">
+            <a class="btn" href="#galeria">Ver fotos e vídeos</a>
+            <a class="btn claro" href="#peca">Conhecer a peça</a>
+          </div>
         </div>
       </div>
     </div>
+    <section class="bloco-sec">
+      <div class="container duas-col">
+        <div class="texto">
+          <p class="rotulo">Sobre o projeto</p>
+          <h2>Ciência, teatro e Libras no mesmo palco</h2>
+          <p>Uma sala de universidade parece ser o último lugar que restou depois do fim do mundo. Presos ali, uma orientadora e seu aluno testam hipóteses para descobrir o que aconteceu, enquanto a zeladora traduz tudo em Libras. A cada ensaio, o cenário se contrai e o céu desce um pouco mais.</p>
+          <p>A peça foi criada na tese <i>Teatro em designer universal: a relação humano e natureza pautada na educação CTS</i>, do Programa de Pós-Graduação em Ensino de Ciência e Tecnologia da UTFPR, com orientação de Awdry Feisser Miquelin e coorientação de Thaís Anholetto de Medeiros, em parceria com o Grupo de Teatro Científico da UEPG.</p>
+        </div>
+        <figure class="foto-alta">
+          <img src="img/tartaruga-2.jpg" alt="A personagem Tartaruga em cena, com figurino feito de retalhos de jeans e carapaça clara, braços abertos diante do cenário de papelão.">
+          <figcaption>A personagem Tartaruga, que conversa com o público antes e depois da peça. Foto: GTC/UEPG, 29/06/2026.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="bloco-sec faixa">
+      <div class="container">
+        <div class="sec-titulo"><p class="rotulo">Explore o site</p><h2>O que você encontra aqui</h2></div>
+        <div class="atalhos">
+          <a class="atalho" href="#peca"><img src="img/palco-3.jpg" alt=""><div><strong>A peça</strong><span>Personagens, as dez cenas e os sete ensaios.</span></div></a>
+          <a class="atalho" href="#apresentacoes"><img src="img/palco-1.jpg" alt=""><div><strong>Apresentações</strong><span>Dez sessões em três estados e os prêmios.</span></div></a>
+          <a class="atalho" href="#galeria"><img src="img/cena-video-poster.jpg" alt=""><div><strong>Fotos e vídeos</strong><span>Registros de cena e gravações das apresentações.</span></div></a>
+          <a class="atalho" href="#publico"><img src="img/tartaruga-1.jpg" alt="" style="object-position:center 25%"><div><strong>O público</strong><span>As perguntas feitas pela personagem Tartaruga.</span></div></a>
+          <a class="atalho" href="#pesquisa"><img src="img/palco-4.jpg" alt=""><div><strong>A pesquisa</strong><span>A/r/tografia e a matriz dialógico-problematizadora.</span></div></a>
+          <a class="atalho" href="#professores"><img src="img/tartaruga-3.jpg" alt="" style="object-position:center 25%"><div><strong>Para professores</strong><span>Como criar um roteiro de teatro científico.</span></div></a>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <section id="sobre">
-    <div class="container duas-col">
-      <div class="texto">
-        <p class="rotulo">Sobre o projeto</p>
-        <h2>Ciência, teatro e Libras no mesmo palco</h2>
-        <p>Uma sala de universidade parece ser o último lugar que restou depois do fim do mundo. Presos ali, uma orientadora e seu aluno testam hipóteses para descobrir o que aconteceu, enquanto a zeladora traduz tudo em Libras. A cada ensaio, o cenário se contrai e o céu desce um pouco mais.</p>
-        <p>A peça foi criada na tese <i>Teatro em designer universal: a relação humano e natureza pautada na educação CTS</i>, do Programa de Pós-Graduação em Ensino de Ciência e Tecnologia da UTFPR, com orientação de Awdry Feisser Miquelin e coorientação de Thaís Anholetto de Medeiros, em parceria com o Grupo de Teatro Científico da UEPG.</p>
-        <p>A pesquisa investiga o que a criação e a encenação de uma peça pensada em desenho universal contribuem para discutir questões sociocientíficas sobre a relação entre ser humano e natureza.</p>
-      </div>
-      <figure class="foto-alta">
-        <img src="img/tartaruga-2.jpg" alt="A personagem Tartaruga em cena, com figurino feito de retalhos de jeans e carapaça clara, braços abertos diante do cenário de papelão.">
-        <figcaption>A personagem Tartaruga, que conversa com o público antes e depois da peça. Foto: GTC/UEPG, 29/06/2026.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section id="peca" class="faixa">
-    <div class="container">
-      <div class="sec-titulo">
-        <p class="rotulo">A peça</p>
-        <h2>Três personagens, dez cenas, sete ensaios</h2>
-        <p class="objetivo"><b>Objetivo 1 da tese:</b> elaborar o roteiro de uma peça teatral científica na perspectiva do desenho universal.</p>
-        <p class="lead">Roteiro de Talícia do Carmo Galan Kuhn, Awdry Feisser Miquelin, Thaís Anholetto de Medeiros e Jocemar de Quadros Chagas, escrito entre dezembro de 2023 e abril de 2024 e registrado na Fundação Biblioteca Nacional (nº 903.813).</p>
-      </div>
-      <div class="cards">
-        <article class="card"><p class="meta">Personagem 1</p><h3>Orientadora</h3><p>Professora universitária cega. Formula as hipóteses sobre o fim do mundo e conduz o método científico.</p></article>
-        <article class="card"><p class="meta">Personagem 2</p><h3>Aluno</h3><p>Orientando vidente. Vai ao fundo do palco fazer cada experimento mental e volta para contar o que viu.</p></article>
-        <article class="card"><p class="meta">Personagem 3</p><h3>Zeladora</h3><p>Intérprete de Libras. Traduz todas as falas, anuncia cada cena e, no final, assume o protagonismo.</p></article>
-      </div>
-      <div class="cenas" id="lista-cenas"></div>
-    </div>
-  </section>
-
-  <section id="apresentacoes">
-    <div class="container">
-      <div class="sec-titulo">
-        <p class="rotulo">Apresentações</p>
-        <h2>A peça em circulação</h2>
-        <p class="objetivo"><b>Objetivo 2 da tese:</b> executar a peça teatral em desenho universal.</p>
-      </div>
-      <div class="numeros">
-        <div><strong>10</strong><span>apresentações entre set. 2024 e nov. 2025</span></div>
-        <div><strong id="total-publico">2.458</strong><span>espectadores, segundo estimativas do grupo</span></div>
-        <div><strong>3</strong><span>estados: Paraná, Minas Gerais e Rio Grande do Sul</span></div>
-        <div><strong>3</strong><span>indicações e prêmios em festivais</span></div>
-      </div>
-      <div class="filtro" role="group" aria-label="Filtrar por ano">
-        <button type="button" data-ano="todos" aria-pressed="true">Todas</button>
-        <button type="button" data-ano="2024" aria-pressed="false">2024</button>
-        <button type="button" data-ano="2025" aria-pressed="false">2025</button>
-      </div>
-      <div class="tabela-wrap">
-        <table>
-          <thead><tr><th scope="col">Data</th><th scope="col">Evento</th><th scope="col">Local</th><th scope="col">Público aprox.</th></tr></thead>
-          <tbody id="agenda"></tbody>
-        </table>
-      </div>
-      <div class="links-video">
-        <a class="btn contorno" href="https://youtu.be/kkxSLYLSglI" target="_blank" rel="noopener">Vídeo da estreia</a>
-        <a class="btn contorno" href="https://youtu.be/Re-UDE5_bxg" target="_blank" rel="noopener">Vídeo do 52º FENATA</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="galeria" class="faixa">
-    <div class="container">
-      <div class="sec-titulo">
-        <p class="rotulo">Galeria</p>
-        <h2>Registros de cena</h2>
-      </div>
-      <div class="galeria" id="galeria-grid"></div>
-    </div>
-  </section>
-
-  <section id="publico">
-    <div class="container duas-col">
-      <div class="texto">
-        <p class="rotulo">O público</p>
-        <h2>Perguntas feitas dentro da cena</h2>
-        <p class="objetivo"><b>Objetivos 2 e 3 da tese:</b> investigar as concepções do público e as questões CTS que surgem na interação com a peça.</p>
-        <p>Em vez de questionários, as perguntas são feitas pela personagem Tartaruga, antes e depois do espetáculo. Ao final, cada participante recebe uma pequena tartaruga impressa em 3D.</p>
-        <div class="abas" role="tablist" aria-label="Momento da entrevista">
-          <button type="button" role="tab" id="aba-antes" aria-selected="true" aria-controls="lista-perguntas">Antes da peça</button>
-          <button type="button" role="tab" id="aba-depois" aria-selected="false" aria-controls="lista-perguntas">Depois da peça</button>
+  <!-- ===================== A PEÇA ===================== -->
+  <div class="view" id="peca" data-titulo="A peça" hidden>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › A peça</p><h1>A peça</h1><p>Três personagens, dez cenas, sete ensaios.</p></div></div>
+    <section class="bloco-sec">
+      <div class="container">
+        <div class="sec-titulo">
+          <p class="objetivo"><b>Objetivo 1 da tese:</b> elaborar o roteiro de uma peça teatral científica na perspectiva do desenho universal.</p>
+          <p class="lead">Roteiro de Talícia do Carmo Galan Kuhn, Awdry Feisser Miquelin, Thaís Anholetto de Medeiros e Jocemar de Quadros Chagas, escrito entre dezembro de 2023 e abril de 2024 e registrado na Fundação Biblioteca Nacional (nº 903.813).</p>
         </div>
-        <ul class="perguntas" id="lista-perguntas" role="tabpanel"></ul>
-        <p class="aviso">As entrevistas de 2026 estão em análise. Os relatos do público serão publicados aqui depois de anonimizados.</p>
+        <div class="cards">
+          <article class="card"><p class="meta">Personagem 1</p><h3>Orientadora</h3><p>Professora universitária cega. Formula as hipóteses sobre o fim do mundo e conduz o método científico.</p></article>
+          <article class="card"><p class="meta">Personagem 2</p><h3>Aluno</h3><p>Orientando vidente. Vai ao fundo do palco fazer cada experimento mental e volta para contar o que viu.</p></article>
+          <article class="card"><p class="meta">Personagem 3</p><h3>Zeladora</h3><p>Intérprete de Libras. Traduz todas as falas, anuncia cada cena e, no final, assume o protagonismo.</p></article>
+        </div>
+        <div class="cenas" id="lista-cenas"></div>
       </div>
-      <div class="texto">
-        <h3>Ação interventiva no Parque Estadual de Vila Velha</h3>
-        <p>Em 21 de abril de 2025, no World Creativity Day Brasil, personagens mascarados do GTC/UEPG surgiam ao longo da trilha dos arenitos. No fim do percurso, uma instalação feita de resíduos convidava ao toque. A pergunta norteadora era: <b>o que fazer quando o céu pesa sobre nossas cabeças?</b></p>
-        <p>Perguntas feitas aos visitantes:</p>
-        <ol class="simples" id="perguntas-vv"></ol>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="pesquisa" class="faixa">
-    <div class="container">
-      <div class="sec-titulo">
-        <p class="rotulo">A pesquisa</p>
-        <h2>Como a tese foi feita</h2>
+  <!-- ===================== APRESENTAÇÕES ===================== -->
+  <div class="view" id="apresentacoes" data-titulo="Apresentações" hidden>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Apresentações</p><h1>Apresentações</h1><p>A peça em circulação entre 2024 e 2025.</p></div></div>
+    <section class="bloco-sec">
+      <div class="container">
+        <p class="objetivo" style="margin-bottom:24px"><b>Objetivo 2 da tese:</b> executar a peça teatral em desenho universal.</p>
+        <div class="numeros">
+          <div><strong>10</strong><span>apresentações entre set. 2024 e nov. 2025</span></div>
+          <div><strong id="total-publico">2.458</strong><span>espectadores, segundo estimativas do grupo</span></div>
+          <div><strong>3</strong><span>estados: Paraná, Minas Gerais e Rio Grande do Sul</span></div>
+          <div><strong>3</strong><span>indicações e prêmios em festivais</span></div>
+        </div>
+        <div class="filtro" role="group" aria-label="Filtrar por ano">
+          <button type="button" data-ano="todos" aria-pressed="true">Todas</button>
+          <button type="button" data-ano="2024" aria-pressed="false">2024</button>
+          <button type="button" data-ano="2025" aria-pressed="false">2025</button>
+        </div>
+        <div class="tabela-wrap">
+          <table>
+            <thead><tr><th scope="col">Data</th><th scope="col">Evento</th><th scope="col">Local</th><th scope="col">Público aprox.</th></tr></thead>
+            <tbody id="agenda"></tbody>
+          </table>
+        </div>
+        <p style="margin-top:18px"><a class="btn contorno" href="#galeria">Assistir aos vídeos das apresentações</a></p>
       </div>
-      <div class="duas-col">
+    </section>
+  </div>
+
+  <!-- ===================== FOTOS E VÍDEOS ===================== -->
+  <div class="view" id="galeria" data-titulo="Fotos e vídeos" hidden>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Fotos e vídeos</p><h1>Fotos e vídeos</h1><p>Clique em uma foto para ampliar e use as setas para passar pelas outras.</p></div></div>
+    <section class="bloco-sec">
+      <div class="container">
+        <div class="sec-titulo"><h2>Vídeos</h2></div>
+        <div class="videos">
+          <article class="video-card">
+            <div class="tela"><button type="button" class="yt" data-id="kkxSLYLSglI" data-titulo="Estreia de Sete ensaios depois do fim do mundo" aria-label="Reproduzir vídeo: Estreia de Sete ensaios depois do fim do mundo"><img src="img/palco-3.jpg" alt=""><span>▶ Reproduzir</span></button></div>
+            <div class="info"><h3>Estreia</h3><span>XVIII Encontro Paranaense de Educação Ambiental, Ponta Grossa, 19/09/2024.</span><a href="https://youtu.be/kkxSLYLSglI" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+          </article>
+          <article class="video-card">
+            <div class="tela"><button type="button" class="yt" data-id="Re-UDE5_bxg" data-titulo="Apresentação no 52º FENATA" aria-label="Reproduzir vídeo: Apresentação no 52º FENATA"><img src="img/palco-1.jpg" alt=""><span>▶ Reproduzir</span></button></div>
+            <div class="info"><h3>52º Festival Nacional de Teatro (FENATA)</h3><span>SESC Estação Saudade, Ponta Grossa, 13/11/2024.</span><a href="https://youtu.be/Re-UDE5_bxg" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+          </article>
+          <article class="video-card">
+            <div class="tela"><video controls preload="metadata" poster="img/cena-video-poster.jpg" aria-label="Trecho de cena da peça gravado em 29 de junho de 2026"><source src="video/cena-29-06-2026.mp4" type="video/mp4"></video></div>
+            <div class="info"><h3>Trecho de cena</h3><span>Registro de 29/06/2026, UEPG. Vídeo: GTC/UEPG.</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="bloco-sec faixa">
+      <div class="container">
+        <div class="sec-titulo"><h2>Fotos</h2></div>
+        <div class="galeria" id="galeria-grid"></div>
+        <p class="aviso" style="margin-top:18px">Novas fotos das apresentações e das premiações serão incluídas em breve.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== PÚBLICO ===================== -->
+  <div class="view" id="publico" data-titulo="O público" hidden>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › O público</p><h1>O público</h1><p>Perguntas feitas dentro da cena.</p></div></div>
+    <section class="bloco-sec">
+      <div class="container duas-col">
         <div class="texto">
-          <h3>A/r/tografia</h3>
+          <p class="objetivo"><b>Objetivos 2 e 3 da tese:</b> investigar as concepções do público e as questões CTS que surgem na interação com a peça.</p>
+          <p>Em vez de questionários, as perguntas são feitas pela personagem Tartaruga, antes e depois do espetáculo. Ao final, cada participante recebe uma pequena tartaruga impressa em 3D.</p>
+          <div class="abas" role="tablist" aria-label="Momento da entrevista">
+            <button type="button" role="tab" id="aba-antes" aria-selected="true" aria-controls="lista-perguntas">Antes da peça</button>
+            <button type="button" role="tab" id="aba-depois" aria-selected="false" aria-controls="lista-perguntas">Depois da peça</button>
+          </div>
+          <ul class="perguntas" id="lista-perguntas" role="tabpanel"></ul>
+          <p class="aviso">As entrevistas de 2026 estão em análise. Os relatos do público serão publicados aqui depois de anonimizados.</p>
+        </div>
+        <div class="texto">
+          <figure class="foto-alta"><img src="img/tartaruga-1.jpg" alt="A personagem Tartaruga no palco, de perfil, com o figurino de retalhos de jeans." style="max-height:360px"><figcaption>A personagem Tartaruga. Foto: GTC/UEPG, 29/06/2026.</figcaption></figure>
+          <h3>Ação interventiva no Parque Estadual de Vila Velha</h3>
+          <p>Em 21 de abril de 2025, no World Creativity Day Brasil, personagens mascarados do GTC/UEPG surgiam ao longo da trilha dos arenitos. No fim do percurso, uma instalação feita de resíduos convidava ao toque. A pergunta norteadora era: <b>o que fazer quando o céu pesa sobre nossas cabeças?</b></p>
+          <p>Perguntas feitas aos visitantes:</p>
+          <ol class="simples" id="perguntas-vv"></ol>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== PESQUISA ===================== -->
+  <div class="view" id="pesquisa" data-titulo="A pesquisa" hidden>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › A pesquisa</p><h1>A pesquisa</h1><p>Como a tese foi feita.</p></div></div>
+    <section class="bloco-sec">
+      <div class="container duas-col">
+        <div class="texto">
+          <h2>A/r/tografia</h2>
           <p>A tese adota a a/r/tografia, modalidade de pesquisa educacional baseada em arte criada na Universidade da Columbia Britânica por Rita L. Irwin e colaboradores. O nome junta os papéis de artista (<i>artist</i>), pesquisador (<i>researcher</i>) e professor (<i>teacher</i>) à escrita (<i>graphy</i>).</p>
           <p>A pesquisadora está dentro do processo que investiga. Talicia é coautora do roteiro, integra o GTC/UEPG e, em cena, é a atriz que dá vida à Zeladora e traduz a peça em Libras.</p>
+          <figure><img src="img/gtc-uepg.jpg" alt="Banner do Grupo de Teatro Científico da UEPG na entrada do auditório."><figcaption>Grupo de Teatro Científico da UEPG. Foto: GTC/UEPG, 29/06/2026.</figcaption></figure>
         </div>
         <div class="texto">
-          <h3>Matriz dialógico-problematizadora</h3>
+          <h2>Matriz dialógico-problematizadora</h2>
           <p>A matriz cruza professores, estudantes, teatro em desenho universal e questões sociocientíficas, e gera dezesseis perguntas que orientam a análise. Escolha uma célula.</p>
           <div class="matriz-wrap">
             <table class="matriz" id="tabela-matriz">
-              <caption class="sr" style="position:absolute;left:-999px">Matriz de quatro por quatro perguntas</caption>
+              <caption style="position:absolute;left:-999px">Matriz de quatro por quatro perguntas</caption>
               <thead><tr><th scope="col"></th><th scope="col">Professores</th><th scope="col">Estudantes</th><th scope="col">Teatro em DU</th><th scope="col">QSC</th></tr></thead>
               <tbody></tbody>
             </table>
@@ -382,50 +462,56 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
           <div class="matriz-q" id="matriz-q" aria-live="polite"></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="professores">
-    <div class="container">
-      <div class="sec-titulo">
-        <p class="rotulo">Para professores</p>
-        <h2>Como criar um roteiro de teatro científico</h2>
-        <p class="objetivo"><b>Objetivo 5 da tese:</b> sistematizar o processo de criação em um material pedagógico para professores.</p>
-        <p class="lead">A ordem de tarefas que funcionou na criação de “Sete ensaios depois do fim do mundo”, apresentada no XV ENPEC, em Belém, em 2025.</p>
+  <!-- ===================== PROFESSORES ===================== -->
+  <div class="view" id="professores" data-titulo="Para professores" hidden>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Para professores</p><h1>Para professores</h1><p>Como criar um roteiro de teatro científico.</p></div></div>
+    <section class="bloco-sec">
+      <div class="container">
+        <div class="sec-titulo">
+          <p class="objetivo"><b>Objetivo 5 da tese:</b> sistematizar o processo de criação em um material pedagógico para professores.</p>
+          <p class="lead">A ordem de tarefas que funcionou na criação de “Sete ensaios depois do fim do mundo”, apresentada no XV ENPEC, em Belém, em 2025.</p>
+        </div>
+        <ol class="passos">
+          <li><h3>Defina o tema e as obras de referência</h3><p>O ponto de partida foi decidir que o texto dialogaria com Ailton Krenak, em especial a pandemia e a emergência climática.</p></li>
+          <li><h3>Estude o tema</h3><p>Conhecer o assunto antes ajuda, mas não é obrigatório. A equipe leu os livros, outros textos e entrevistas de Krenak.</p></li>
+          <li><h3>Escolha um estilo</h3><p>O Teatro do Absurdo trouxe falas de aparente normalidade em contraste com uma situação impossível.</p></li>
+          <li><h3>Comece pelo fim</h3><p>A estratégia para iniciar a escrita foi assumir que o mundo já havia acabado.</p></li>
+          <li><h3>Poucas personagens, um só lugar</h3><p>Orientadora, aluno e zeladora, numa sala da universidade, cada uma com uma marca de acessibilidade.</p></li>
+          <li><h3>Repita a estrutura</h3><p>Cada ensaio testa uma hipótese, da mais absurda à mais real. A repetição também pode dar conforto a espectadores autistas ou com TDAH.</p></li>
+          <li><h3>Feche com uma imagem forte</h3><p>O desfecho veio de um alerta indígena: cantar e dançar para suspender o céu.</p></li>
+          <li><h3>Escreva a acessibilidade junto</h3><p>Libras em cena, uma protagonista cega e audiodescrição fazem parte do texto desde o primeiro rascunho.</p></li>
+        </ol>
       </div>
-      <ol class="passos">
-        <li><h3>Defina o tema e as obras de referência</h3><p>O ponto de partida foi decidir que o texto dialogaria com Ailton Krenak, em especial a pandemia e a emergência climática.</p></li>
-        <li><h3>Estude o tema</h3><p>Conhecer o assunto antes ajuda, mas não é obrigatório. A equipe leu os livros, outros textos e entrevistas de Krenak.</p></li>
-        <li><h3>Escolha um estilo</h3><p>O Teatro do Absurdo trouxe falas de aparente normalidade em contraste com uma situação impossível.</p></li>
-        <li><h3>Comece pelo fim</h3><p>A estratégia para iniciar a escrita foi assumir que o mundo já havia acabado.</p></li>
-        <li><h3>Poucas personagens, um só lugar</h3><p>Orientadora, aluno e zeladora, numa sala da universidade, cada uma com uma marca de acessibilidade.</p></li>
-        <li><h3>Repita a estrutura</h3><p>Cada ensaio testa uma hipótese, da mais absurda à mais real. A repetição também pode dar conforto a espectadores autistas ou com TDAH.</p></li>
-        <li><h3>Feche com uma imagem forte</h3><p>O desfecho veio de um alerta indígena: cantar e dançar para suspender o céu.</p></li>
-        <li><h3>Escreva a acessibilidade junto</h3><p>Libras em cena, uma protagonista cega e audiodescrição fazem parte do texto desde o primeiro rascunho.</p></li>
-      </ol>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="publicacoes" class="faixa">
-    <div class="container duas-col">
-      <div class="texto">
-        <p class="rotulo">Publicações</p>
-        <h2>Produções da pesquisa</h2>
-        <ul class="refs">
-          <li>KUHN, T. C. G. et al. Produtos educacionais para deficiências sensoriais: mapeamento das contribuições de uma universidade pública federal. <i>Cadernos Cajuína</i>, v. 11, n. 16, 2026. <a href="https://doi.org/10.52641/cadcajv11i16.024" target="_blank" rel="noopener">doi.org/10.52641/cadcajv11i16.024</a></li>
-          <li>KUHN, T. C. G.; MIQUELIN, A. F.; CHAGAS, J. Q. Construção de um roteiro para teatro científico inspirado na obra de Ailton Krenak. XV ENPEC, Belém, 2025.</li>
-          <li>“Una pieza de teatro científico inspirada en las ideas de un líder indígena brasileño”. XIX Congreso RedPOP 2025, Puebla, México.</li>
-          <li>Iniciações científicas no GTC/UEPG (2024), orientadas por Leila Inês Follmann Freire: criação de figurino (Thayssa Munique de Souza), objetos cênicos (Talita Boldt Rodrigues de Souza) e material digital sobre teatro de temática científica no Paraná (Raylan Gonçalves Marinho).</li>
-        </ul>
+  <!-- ===================== PUBLICAÇÕES ===================== -->
+  <div class="view" id="publicacoes" data-titulo="Publicações" hidden>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Publicações</p><h1>Publicações e equipe</h1><p>O que a pesquisa já produziu e quem faz a peça.</p></div></div>
+    <section class="bloco-sec">
+      <div class="container duas-col">
+        <div class="texto">
+          <h2>Produções da pesquisa</h2>
+          <ul class="refs">
+            <li>KUHN, T. C. G. et al. Produtos educacionais para deficiências sensoriais: mapeamento das contribuições de uma universidade pública federal. <i>Cadernos Cajuína</i>, v. 11, n. 16, 2026. <a href="https://doi.org/10.52641/cadcajv11i16.024" target="_blank" rel="noopener">doi.org/10.52641/cadcajv11i16.024</a></li>
+            <li>KUHN, T. C. G.; MIQUELIN, A. F.; CHAGAS, J. Q. Construção de um roteiro para teatro científico inspirado na obra de Ailton Krenak. XV ENPEC, Belém, 2025.</li>
+            <li>“Una pieza de teatro científico inspirada en las ideas de un líder indígena brasileño”. XIX Congreso RedPOP 2025, Puebla, México.</li>
+            <li>Iniciações científicas no GTC/UEPG (2024), orientadas por Leila Inês Follmann Freire: criação de figurino (Thayssa Munique de Souza), objetos cênicos (Talita Boldt Rodrigues de Souza) e material digital sobre teatro de temática científica no Paraná (Raylan Gonçalves Marinho).</li>
+          </ul>
+        </div>
+        <div class="texto">
+          <h2>Grupo de Teatro Científico da UEPG</h2>
+          <p class="lead">Projeto de extensão criado em 2022 para divulgação e alfabetização científica. Também produziu “Coração em Chagas”, “A que faz”, “AssistIA” e “Pingo: uma gotinha rumo ao mar”.</p>
+          <ul class="equipe" id="equipe"></ul>
+        </div>
       </div>
-      <div class="texto">
-        <p class="rotulo">Equipe</p>
-        <h2>Grupo de Teatro Científico da UEPG</h2>
-        <p class="lead">Projeto de extensão criado em 2022 para divulgação e alfabetização científica. Também produziu “Coração em Chagas”, “A que faz”, “AssistIA” e “Pingo: uma gotinha rumo ao mar”.</p>
-        <ul class="equipe" id="equipe"></ul>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <div class="container"><nav class="paginacao" id="paginacao" aria-label="Páginas anterior e seguinte"></nav></div>
 </main>
 
 <footer>
@@ -433,13 +519,21 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     <div><h3>Realização</h3><p>Programa de Pós-Graduação em Ensino de Ciência e Tecnologia (PPGECT) · Universidade Tecnológica Federal do Paraná, câmpus Ponta Grossa</p></div>
     <div><h3>Parceria</h3><p>Grupo de Teatro Científico da Universidade Estadual de Ponta Grossa (GTC/UEPG)</p></div>
     <div><h3>Tese</h3><p>Talicia do Carmo Galan Kuhn. Orientação: Awdry Feisser Miquelin. Coorientação: Thaís Anholetto de Medeiros.</p></div>
-    <p class="base">Público estimado a partir dos registros do GTC/UEPG. Fotos: GTC/UEPG.</p>
+    <p class="base">Público estimado a partir dos registros do GTC/UEPG. Fotos e vídeos: GTC/UEPG.</p>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
-  <button type="button" id="fechar-lb">Fechar</button>
-  <figure><img id="lb-img" alt=""><p id="lb-cap"></p></figure>
+  <div class="lb-topo">
+    <span class="lb-contador" id="lb-contador" aria-live="polite"></span>
+    <button type="button" id="fechar-lb">Fechar ✕</button>
+  </div>
+  <div class="lb-palco">
+    <button type="button" class="nav" id="lb-ant" aria-label="Foto anterior">‹</button>
+    <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+    <button type="button" class="nav" id="lb-prox" aria-label="Próxima foto">›</button>
+  </div>
+  <div class="lb-miniaturas" id="lb-miniaturas"></div>
 </div>
 
 <script>
@@ -458,8 +552,30 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
 
   var mb = document.getElementById('menu-btn'), menu = document.getElementById('menu-principal');
   mb.onclick = function () { var a = menu.classList.toggle('aberto'); mb.setAttribute('aria-expanded', a ? 'true' : 'false'); };
-  menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') { menu.classList.remove('aberto'); mb.setAttribute('aria-expanded', 'false'); } });
 
+  /* ---------- páginas internas ---------- */
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var ids = views.map(function (v) { return v.id; });
+  var pag = document.getElementById('paginacao');
+  function mostra(id, foco) {
+    if (ids.indexOf(id) < 0) id = 'inicio';
+    views.forEach(function (v) { v.hidden = v.id !== id; });
+    Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
+      if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    var i = ids.indexOf(id), ant = ids[i - 1], prox = ids[i + 1], html = '';
+    if (ant) html += '<a href="#' + ant + '"><span>‹ Página anterior</span><strong>' + document.getElementById(ant).dataset.titulo + '</strong></a>';
+    if (prox) html += '<a class="prox" href="#' + prox + '"><span>Próxima página ›</span><strong>' + document.getElementById(prox).dataset.titulo + '</strong></a>';
+    pag.innerHTML = html;
+    document.title = (id === 'inicio' ? '' : document.getElementById(id).dataset.titulo + ' · ') + 'Sete Ensaios em Cena';
+    menu.classList.remove('aberto'); mb.setAttribute('aria-expanded', 'false');
+    window.scrollTo(0, 0);
+    if (foco) { var h = document.getElementById(id).querySelector('h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
+  }
+  window.addEventListener('hashchange', function () { mostra(location.hash.slice(1), true); });
+  mostra(location.hash.slice(1), false);
+
+  /* ---------- cenas ---------- */
   var cenas = [
     ['Cena 0', 'Abertura', 0, 'A Zeladora entra com seu esfregão e anuncia: “Sete ensaios depois do fim do mundo. Uma alegoria sobre nossos dias.”', 'Apresenta o tom da peça e a personagem que traduz tudo em Libras.'],
     ['Cena 1', 'O último lugar do mundo', 0, 'ALUNO – Parece até que a universidade é o último ambiente que restou do mundo.', 'A Orientadora propõe usar experimentos mentais para descobrir o que levou o mundo ao fim.'],
@@ -477,6 +593,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     return '<details' + (i === 1 ? ' open' : '') + '><summary><span class="num">' + c[0] + '</span><span class="titulo-cena">' + c[1] + (c[2] ? '<span class="ensaio">Ensaio ' + c[2] + '</span>' : '') + '</span></summary><div class="corpo"><p class="rubrica">' + c[3] + '</p><p>' + c[4] + '</p></div></details>';
   }).join('');
 
+  /* ---------- apresentações ---------- */
   var ap = [
     ['19/09/2024', 'XVIII Encontro Paranaense de Educação Ambiental (estreia)', 'Ponta Grossa, PR', 300, ''],
     ['08/10/2024', 'Paraná Faz Ciência', 'Maringá, PR', 100, ''],
@@ -489,8 +606,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     ['06/10/2025', 'Abertura geral das Semanas Acadêmicas da UTFPR', 'UTFPR', 400, ''],
     ['11/11/2025', 'Festival Literário Artístico e Cultural (FLAC), com o 53º FENATA', 'Ponta Grossa, PR', 70, '']
   ];
-  var tot = ap.reduce(function (s, a) { return s + a[3]; }, 0);
-  document.getElementById('total-publico').textContent = tot.toLocaleString('pt-BR');
+  document.getElementById('total-publico').textContent = ap.reduce(function (s, a) { return s + a[3]; }, 0).toLocaleString('pt-BR');
   function agenda(ano) {
     document.getElementById('agenda').innerHTML = ap.filter(function (a) { return ano === 'todos' || a[0].slice(-4) === ano; }).map(function (a) {
       return '<tr><td class="n">' + a[0] + '</td><td>' + a[1] + (a[4] ? '<br><span class="premio">' + a[4] + '</span>' : '') + '</td><td>' + a[2] + '</td><td class="n">' + a[3] + '<div class="barra" aria-hidden="true"><i style="width:' + (a[3] / 700 * 100) + '%"></i></div></td></tr>';
@@ -504,27 +620,67 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     };
   });
 
+  /* ---------- galeria com navegação ---------- */
   var fotos = [
-    ['img/palco-3.jpg', 'Atores em cena diante do cenário de caixas de papelão, sob o céu de tecidos azuis.', 'Os sete ensaios em cena.', ''],
-    ['img/tartaruga-1.jpg', 'A personagem Tartaruga no palco, de perfil, com o figurino de retalhos de jeans.', 'A personagem Tartaruga.', 'alta'],
-    ['img/palco-1.jpg', 'Palco escuro com três atores iluminados e o céu suspenso acima deles.', 'Luz de cena: o céu suspenso.', ''],
+    ['img/palco-3.jpg', 'Atores em cena diante do cenário de caixas de papelão, sob o céu de tecidos azuis.', 'Os ensaios em cena: cenário de papelão e o céu suspenso.', ''],
     ['img/palco-2.jpg', 'Cena escura com o céu de tecidos e plásticos suspenso sobre os atores.', 'O céu desce a cada ensaio.', ''],
     ['img/tartaruga-2.jpg', 'A personagem Tartaruga de frente, braços abertos, carapaça clara sobre o figurino de jeans.', 'O figurino da Tartaruga.', 'alta'],
+    ['img/palco-1.jpg', 'Palco escuro com três atores iluminados e o céu suspenso acima deles.', 'Luz de cena: o céu suspenso.', ''],
+    ['img/tartaruga-1.jpg', 'A personagem Tartaruga no palco, de perfil, com o figurino de retalhos de jeans.', 'A Tartaruga de perfil.', 'alta'],
+    ['img/palco-4.jpg', 'Palco quase todo escuro, com o céu de tecidos iluminado no alto e o cenário de papelão.', 'Luz baixa sobre o cenário.', ''],
+    ['img/tartaruga-3.jpg', 'A personagem Tartaruga em cena, com os braços abertos, diante do cenário.', 'A Tartaruga em cena.', 'alta'],
     ['img/gtc-uepg.jpg', 'Banner do Grupo de Teatro Científico da UEPG na entrada do auditório.', 'Grupo de Teatro Científico da UEPG.', '']
   ];
   var g = document.getElementById('galeria-grid');
-  g.innerHTML = fotos.map(function (f, i) { return '<button type="button" class="' + f[3] + '" data-i="' + i + '" aria-label="Ampliar foto: ' + f[2] + '"><img src="' + f[0] + '" alt="' + f[1] + '" loading="lazy"></button>'; }).join('');
-  var lb = document.getElementById('lightbox'), lbi = document.getElementById('lb-img'), lbc = document.getElementById('lb-cap'), ultimo = null;
+  g.innerHTML = fotos.map(function (f, i) { return '<button type="button" class="' + f[3] + '" data-i="' + i + '" aria-label="Ampliar foto ' + (i + 1) + ' de ' + fotos.length + ': ' + f[2] + '"><img src="' + f[0] + '" alt="' + f[1] + '" loading="lazy"></button>'; }).join('');
+  var lb = document.getElementById('lightbox'), lbi = document.getElementById('lb-img'), lbc = document.getElementById('lb-cap'),
+      cont = document.getElementById('lb-contador'), mini = document.getElementById('lb-miniaturas'), atual = 0, ultimo = null;
+  mini.innerHTML = fotos.map(function (f, i) { return '<button type="button" data-i="' + i + '" aria-label="Ir para a foto ' + (i + 1) + '"><img src="' + f[0] + '" alt=""></button>'; }).join('');
+  function abreFoto(i) {
+    atual = (i + fotos.length) % fotos.length;
+    var f = fotos[atual];
+    lbi.src = f[0]; lbi.alt = f[1];
+    lbc.textContent = f[2] + ' Foto: GTC/UEPG, 29/06/2026.';
+    cont.textContent = 'Foto ' + (atual + 1) + ' de ' + fotos.length;
+    Array.prototype.forEach.call(mini.children, function (b, j) { if (j === atual) { b.setAttribute('aria-current', 'true'); b.scrollIntoView({ block: 'nearest', inline: 'center' }); } else b.removeAttribute('aria-current'); });
+  }
   g.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
-    var f = fotos[+b.getAttribute('data-i')]; ultimo = b;
-    lbi.src = f[0]; lbi.alt = f[1]; lbc.textContent = f[2] + ' Foto: GTC/UEPG, 29/06/2026.'; lb.hidden = false; document.getElementById('fechar-lb').focus();
+    ultimo = b; lb.hidden = false; document.body.classList.add('lb-aberto'); abreFoto(+b.getAttribute('data-i')); document.getElementById('lb-prox').focus();
   });
-  function fecha() { lb.hidden = true; if (ultimo) ultimo.focus(); }
+  mini.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) abreFoto(+b.getAttribute('data-i')); });
+  document.getElementById('lb-ant').onclick = function () { abreFoto(atual - 1); };
+  document.getElementById('lb-prox').onclick = function () { abreFoto(atual + 1); };
+  function fecha() { lb.hidden = true; document.body.classList.remove('lb-aberto'); if (ultimo) ultimo.focus(); }
   document.getElementById('fechar-lb').onclick = fecha;
-  lb.addEventListener('click', function (e) { if (e.target === lb) fecha(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) fecha(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lb-palco')) fecha(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') fecha();
+    else if (e.key === 'ArrowRight') abreFoto(atual + 1);
+    else if (e.key === 'ArrowLeft') abreFoto(atual - 1);
+  });
+  var x0 = null;
+  lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) abreFoto(atual + (dx < 0 ? 1 : -1));
+  });
 
+  /* ---------- vídeos do YouTube: carregam só quando a pessoa clica ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.yt'), function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-id') + '?autoplay=1&rel=0';
+      f.title = b.getAttribute('data-titulo');
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      b.replaceWith(f);
+      f.focus();
+    });
+  });
+
+  /* ---------- público ---------- */
   var antes = [
     ['Abertura', 'Estamos convidando o público para um bate-papo rápido, de uns 3 minutos. Sua identidade será mantida em sigilo e, se algo ficar desconfortável, basta dizer “desisto”.'],
     ['Perfil', 'Pensando na sua rotina, quais conteúdos que misturam ciência e arte costumam chamar a sua atenção?'],
@@ -539,14 +695,14 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     ['Identidade científica', 'Depois do que você viu no palco, mudou a sua percepção sobre o poder do conhecimento científico para “salvar o mundo”?']
   ];
   var lp = document.getElementById('lista-perguntas'), aa = document.getElementById('aba-antes'), ad = document.getElementById('aba-depois');
-  function mostra(arr) { lp.innerHTML = arr.map(function (p) { return '<li><b>' + p[0] + '</b>' + p[1] + '</li>'; }).join(''); }
-  mostra(antes);
-  aa.onclick = function () { aa.setAttribute('aria-selected', 'true'); ad.setAttribute('aria-selected', 'false'); mostra(antes); };
-  ad.onclick = function () { ad.setAttribute('aria-selected', 'true'); aa.setAttribute('aria-selected', 'false'); mostra(depois); };
-
+  function perguntas(arr) { lp.innerHTML = arr.map(function (p) { return '<li><b>' + p[0] + '</b>' + p[1] + '</li>'; }).join(''); }
+  perguntas(antes);
+  aa.onclick = function () { aa.setAttribute('aria-selected', 'true'); ad.setAttribute('aria-selected', 'false'); perguntas(antes); };
+  ad.onclick = function () { ad.setAttribute('aria-selected', 'true'); aa.setAttribute('aria-selected', 'false'); perguntas(depois); };
   var vv = ['Em algum momento, você já considerou ou refletiu sobre a possibilidade do fim do mundo?', 'A maneira como você consome tecnologia impacta o meio ambiente?', 'A tecnologia como conhecemos hoje pode melhorar a condição humana e evitar o fim do mundo?', 'É possível imaginar um mundo totalmente saudável sem a presença dos seres humanos?', 'O ser humano, no mundo atual, toma decisões livremente?', 'Você considera o conhecimento científico capaz de salvar o mundo?', 'O capitalismo pode ser um devorador de mundos?', 'A humanidade mantém uma relação harmoniosa e equilibrada com a natureza?', 'O uso de tecnologias sustentáveis por indivíduos e governos é uma opção para adiar o fim do mundo?'];
   document.getElementById('perguntas-vv').innerHTML = vv.map(function (q) { return '<li>' + q + '</li>'; }).join('');
 
+  /* ---------- matriz ---------- */
   var linhas = ['Professores', 'Estudantes', 'Teatro em DU', 'QSC'], cols = ['A', 'B', 'C', 'D'];
   var Q = {
     '1A': 'Como o material didático pode auxiliar o trabalho dos professores na relação interdisciplinar entre arte e ciência?',
@@ -572,27 +728,18 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     cols.forEach(function (c) {
       var cod = (i + 1) + c, td = document.createElement('td'), b = document.createElement('button');
       b.type = 'button'; b.textContent = cod; b.setAttribute('aria-pressed', 'false');
-      b.onclick = function () { abre(cod); }; td.appendChild(b); tr.appendChild(td);
+      b.onclick = function () { abreQ(cod); }; td.appendChild(b); tr.appendChild(td);
     });
     tb.appendChild(tr);
   });
-  function abre(cod) {
+  function abreQ(cod) {
     Array.prototype.forEach.call(tb.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', b.textContent === cod ? 'true' : 'false'); });
     mq.innerHTML = '<span class="cod">Pergunta ' + cod + '</span><p>' + Q[cod] + '</p>';
   }
-  abre('2C');
+  abreQ('2C');
 
   var eq = ['Leila Inês Follmann Freire (coordenadora)', 'Renan Sota Guimarães', 'Nelson Silva Junior', 'Jocemar de Quadros Chagas', 'Talita Boldt Rodrigues de Souza', 'Thayssa Munique de Souza', 'Gabriela Ditzel Luz', 'Carlos Rogerio Vriesman', 'Amanda Bueno Pedroso', 'Willian Lima Costa de Almeida', 'Raylan Gonçalves Marinho', 'Maria Fernanda Justus dos Santos', 'Deleon Betim', 'Luiz Slompo', 'Nhara Soraya Paganella Marcondes', 'Talicia do Carmo Galan Kuhn', 'Geovana Ayumi Okuma', 'Carmem Lucia Leite Bittencourt', 'Fabio Vicente da Silva Santos', 'Ana Julia Prandel'];
   document.getElementById('equipe').innerHTML = eq.map(function (n) { return '<li>' + n + '</li>'; }).join('');
-
-  var links = document.querySelectorAll('.menu a');
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) Array.prototype.forEach.call(links, function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); }); });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
-  }
-  if (location.hash) { var alvo = document.getElementById(location.hash.slice(1)); if (alvo) alvo.scrollIntoView(); }
 })();
 </script>
 <!-- VLibras: tradutor oficial do governo federal (https://vlibras.gov.br) -->
