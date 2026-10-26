@@ -26,6 +26,7 @@
   --head: "Roboto Slab", Georgia, "Times New Roman", serif;
   --body: "Atkinson Hyperlegible", Verdana, "Segoe UI", sans-serif;
   --fs: 1.0625rem;
+  --zoom: 1;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -46,13 +47,14 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+html { font-size: calc(100% * var(--zoom)); }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: var(--fs); line-height: 1.65; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--brand-dark); }
 img, video, iframe { max-width: 100%; display: block; }
 a { color: var(--brand); }
 :focus-visible { outline: 3px solid var(--kraft); outline-offset: 2px; }
 h1, h2, h3 { font-family: var(--head); line-height: 1.2; margin: 0; text-wrap: balance; }
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
+h2 { font-size: clamp(1.6rem, calc(3.2vw * var(--zoom)), 2.1rem); }
 h3 { font-size: 1.15rem; }
 p { margin: 0; }
 .container { max-width: 1140px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -87,14 +89,14 @@ p { margin: 0; }
 .page-head { background: var(--band); border-bottom: 1px solid var(--line); padding-block: 28px 24px; }
 .trilha { font-size: .85rem; color: var(--muted); margin-bottom: 6px; }
 .trilha a { color: var(--muted); }
-.page-head h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.page-head h1 { font-size: clamp(1.8rem, calc(4vw * var(--zoom)), 2.5rem); }
 .page-head p { margin-top: 8px; color: var(--muted); max-width: 70ch; }
 
 /* abertura */
 .hero { position: relative; color: #fff; background: #0b111b; }
 .hero img { width: 100%; height: clamp(340px, 50vw, 540px); object-fit: cover; object-position: center 35%; opacity: .78; }
 .hero-text { position: absolute; inset: auto 0 0 0; background: linear-gradient(180deg, transparent, rgba(5, 10, 20, .88) 45%); padding-block: 90px 36px; }
-.hero h1 { font-size: clamp(2rem, 5.2vw, 3.4rem); max-width: 18ch; }
+.hero h1 { font-size: clamp(2rem, calc(5.2vw * var(--zoom)), 3.4rem); max-width: 18ch; }
 .hero p { margin-top: 12px; max-width: 60ch; font-size: 1.08rem; color: #e9eef6; }
 .hero .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .hero .credito { position: absolute; right: 12px; top: 10px; font-size: .75rem; color: #d7dfeb; background: rgba(0,0,0,.45); padding: 2px 8px; }
@@ -333,7 +335,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
         <div class="sec-titulo"><p class="rotulo">Explore o site</p><h2>O que você encontra aqui</h2></div>
         <div class="atalhos">
           <a class="atalho" href="#peca"><img src="img/palco-3.jpg" alt=""><div><strong>A peça</strong><span>Personagens, as dez cenas e os sete ensaios.</span></div></a>
-          <a class="atalho" href="#apresentacoes"><img src="img/palco-1.jpg" alt=""><div><strong>Apresentações</strong><span>Dez sessões em três estados e os prêmios.</span></div></a>
+          <a class="atalho" href="#apresentacoes"><img src="img/palco-1.jpg" alt=""><div><strong>Apresentações</strong><span>Dez sessões em três estados, prêmios e as sessões de 2026.</span></div></a>
           <a class="atalho" href="#galeria"><img src="img/cena-video-poster.jpg" alt=""><div><strong>Fotos e vídeos</strong><span>Registros de cena e gravações das apresentações.</span></div></a>
           <a class="atalho" href="#publico"><img src="img/tartaruga-1.jpg" alt="" style="object-position:center 25%"><div><strong>O público</strong><span>As perguntas feitas pela personagem Tartaruga.</span></div></a>
           <a class="atalho" href="#pesquisa"><img src="img/palco-4.jpg" alt=""><div><strong>A pesquisa</strong><span>A/r/tografia e a matriz dialógico-problematizadora.</span></div></a>
@@ -372,7 +374,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
           <div><strong>10</strong><span>apresentações entre set. 2024 e nov. 2025</span></div>
           <div><strong id="total-publico">2.458</strong><span>espectadores, segundo estimativas do grupo</span></div>
           <div><strong>3</strong><span>estados: Paraná, Minas Gerais e Rio Grande do Sul</span></div>
-          <div><strong>3</strong><span>indicações e prêmios em festivais</span></div>
+          <div><strong>4</strong><span>indicações e prêmios</span></div>
         </div>
         <div class="filtro" role="group" aria-label="Filtrar por ano">
           <button type="button" data-ano="todos" aria-pressed="true">Todas</button>
@@ -384,6 +386,21 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
             <thead><tr><th scope="col">Data</th><th scope="col">Evento</th><th scope="col">Local</th><th scope="col">Público aprox.</th></tr></thead>
             <tbody id="agenda"></tbody>
           </table>
+        </div>
+        <div class="duas-col" style="margin-top:28px">
+          <div class="texto">
+            <h2>Reconhecimentos</h2>
+            <ul class="refs">
+              <li>Indicação de melhor roteiro no 22º Festival Itaquiense de Teatro, Itaqui (RS), 2025.</li>
+              <li>Indicação de melhor espetáculo da mostra técnico-universitária e prêmio de melhor caracterização no 18º Festival de Teatro de Pinhais (PR), 2025.</li>
+              <li>Prêmio pela dramaturgia de “Sete ensaios”, por meio da Secretaria Municipal de Cultura de Ponta Grossa, 2025.</li>
+            </ul>
+          </div>
+          <div class="texto">
+            <h2>Em 2026</h2>
+            <p>A peça voltou à cena em sessões que também foram usadas para as entrevistas com o público: na UTFPR, câmpus Guarapuava; no 1º Conecta UTFPR, em Ponta Grossa, em 28 de maio; e na UEPG, em 29 de junho.</p>
+            <p class="fonte-guia">Fonte: <a href="https://www.utfpr.edu.br/noticias/ponta-grossa/peca-da-utfpr-pg-em-parceria-com-gtc-uepg-conquista-destaque-nacional-no-teatro-cientifico" target="_blank" rel="noopener">notícia da UTFPR</a> e registros do GTC/UEPG.</p>
+          </div>
         </div>
         <p style="margin-top:18px"><a class="btn contorno" href="#galeria">Assistir aos vídeos das apresentações</a></p>
       </div>
@@ -507,7 +524,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
           <ul class="lista-guia">
             <li>Ensino médio, educação de jovens e adultos, ensino superior e formação de professores.</li>
             <li>Ciências, Biologia, Química, Física, Geografia, Sociologia, Filosofia, Arte e Língua Portuguesa, de preferência em trabalho conjunto.</li>
-            <li>Com os vídeos, é possível trabalhar uma cena por aula.</li>
+            <li>A apresentação completa dura cerca de 55 minutos, com classificação indicativa de 14 anos, segundo a programação do 52º Fenata. Com os vídeos, é possível trabalhar uma cena por aula.</li>
           </ul>
         </div>
       </div>
@@ -643,6 +660,12 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
           <h2>Grupo de Teatro Científico da UEPG</h2>
           <p class="lead">Projeto de extensão criado em 2022 para divulgação e alfabetização científica. Também produziu “Coração em Chagas”, “A que faz”, “AssistIA” e “Pingo: uma gotinha rumo ao mar”.</p>
           <ul class="equipe" id="equipe"></ul>
+          <h2 style="margin-top:20px">Na imprensa</h2>
+          <ul class="refs">
+            <li><a href="https://www.utfpr.edu.br/noticias/ponta-grossa/peca-da-utfpr-pg-em-parceria-com-gtc-uepg-conquista-destaque-nacional-no-teatro-cientifico" target="_blank" rel="noopener">Peça da UTFPR-PG em parceria com GTC/UEPG conquista destaque nacional no teatro científico</a>. UTFPR, notícias de Ponta Grossa.</li>
+            <li><a href="https://www2.uepg.br/fenata/52-programacao/" target="_blank" rel="noopener">Programação do 52º Fenata</a>. UEPG, 2024.</li>
+            <li><a href="https://arede.info/mix/611852/53-edicao-do-fenata-continua-nesta-terca-com-denise-stoklos" target="_blank" rel="noopener">53ª edição do Fenata continua nesta terça com Denise Stoklos</a>. aRede, 11 nov. 2025.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -677,11 +700,12 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
 (function () {
   var root = document.documentElement;
   function guarda(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
-  var fs = parseFloat(guarda('se-fs')) || 1.0625;
-  function aplicaFonte() { root.style.setProperty('--fs', fs + 'rem'); guarda('se-fs', String(fs)); }
+  /* o ajuste muda o tamanho-base da página (rem), então todos os textos acompanham */
+  var zoom = parseFloat(guarda('se-zoom')) || 1;
+  function aplicaFonte() { root.style.setProperty('--zoom', String(zoom)); guarda('se-zoom', String(zoom)); }
   aplicaFonte();
-  document.getElementById('fonte-mais').onclick = function () { fs = Math.min(1.5, fs + 0.125); aplicaFonte(); };
-  document.getElementById('fonte-menos').onclick = function () { fs = Math.max(0.875, fs - 0.125); aplicaFonte(); };
+  document.getElementById('fonte-mais').onclick = function () { zoom = Math.min(1.5, Math.round((zoom + 0.125) * 1000) / 1000); aplicaFonte(); };
+  document.getElementById('fonte-menos').onclick = function () { zoom = Math.max(0.875, Math.round((zoom - 0.125) * 1000) / 1000); aplicaFonte(); };
   var bc = document.getElementById('contraste');
   function contraste(on) { if (on) root.setAttribute('data-contrast', 'alto'); else root.removeAttribute('data-contrast'); bc.setAttribute('aria-pressed', on ? 'true' : 'false'); guarda('se-contraste', on ? '1' : '0'); }
   contraste(guarda('se-contraste') === '1');
