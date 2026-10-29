@@ -170,6 +170,8 @@ td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .barra i { display: block; height: 100%; background: var(--brand); }
 
 /* galeria */
+.premios { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 16px 0; }
+.premios figcaption { font-size: .85rem; }
 .galeria { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 900px) { .galeria { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .galeria { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -366,7 +368,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
 
   <!-- ===================== APRESENTAÇÕES ===================== -->
   <div class="view" id="apresentacoes" data-titulo="Apresentações" hidden>
-    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Apresentações</p><h1>Apresentações</h1><p>A peça em circulação entre 2024 e 2025.</p></div></div>
+    <div class="page-head"><div class="container"><p class="trilha"><a href="#inicio">Início</a> › Apresentações</p><h1>Apresentações</h1><p>A peça em circulação entre 2024 e 2026.</p></div></div>
     <section class="bloco-sec">
       <div class="container">
         <p class="objetivo" style="margin-bottom:24px"><b>Objetivo 2 da tese:</b> executar a peça teatral em desenho universal.</p>
@@ -393,13 +395,19 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
             <ul class="refs">
               <li>Indicação de melhor roteiro no 22º Festival Itaquiense de Teatro, Itaqui (RS), 2025.</li>
               <li>Indicação de melhor espetáculo da mostra técnico-universitária e prêmio de melhor caracterização no 18º Festival de Teatro de Pinhais (PR), 2025.</li>
-              <li>Prêmio pela dramaturgia de “Sete ensaios”, por meio da Secretaria Municipal de Cultura de Ponta Grossa, 2025.</li>
+              <li>Dramaturgia de “Sete ensaios depois do fim do mundo” contemplada no Edital nº 001/2025 de premiação de produtos artístico-culturais do Fundo Municipal de Cultura de Ponta Grossa, segmento Teatro e Música (homologação publicada no <i>Diário Oficial do Município</i>, n. 4419, 16 dez. 2025).</li>
             </ul>
+            <div class="premios">
+              <figure><img src="img/premio-indicacao.jpg" alt="Cartaz da indicação a melhor espetáculo da mostra técnico-universitária, com foto da Orientadora em cena." loading="lazy"><figcaption>Indicação, 18º Festival de Teatro de Pinhais.</figcaption></figure>
+              <figure><img src="img/premio-caracterizacao.jpg" alt="Cartaz do prêmio de melhor caracterização, com o troféu do festival e fotos dos figurinos e máscaras." loading="lazy"><figcaption>Prêmio de melhor caracterização, 18º Festival de Teatro de Pinhais.</figcaption></figure>
+            </div>
+            <figure><img src="img/pinhais-premio-1.jpg" alt="Três atores com figurinos de retalhos de jeans seguram o troféu e o certificado do festival." loading="lazy"><figcaption>O elenco com o troféu e o certificado em Pinhais. Foto: GTC/UEPG, 2025.</figcaption></figure>
           </div>
           <div class="texto">
             <h2>Em 2026</h2>
-            <p>A peça voltou à cena em sessões que também foram usadas para as entrevistas com o público: na UTFPR, câmpus Guarapuava; no 1º Conecta UTFPR, em Ponta Grossa, em 28 de maio; e na UEPG, em 29 de junho.</p>
-            <p class="fonte-guia">Fonte: <a href="https://www.utfpr.edu.br/noticias/ponta-grossa/peca-da-utfpr-pg-em-parceria-com-gtc-uepg-conquista-destaque-nacional-no-teatro-cientifico" target="_blank" rel="noopener">notícia da UTFPR</a> e registros do GTC/UEPG.</p>
+            <p>A peça voltou à cena em sessões que também foram usadas para as entrevistas com o público: na UTFPR, câmpus Guarapuava, em 10 de abril; na UTFPR, câmpus Ponta Grossa, durante a Inovaweek e o 1º Conecta UTFPR, em 27 de maio; e na UEPG, em 29 de junho.</p>
+            <figure><img src="img/conecta-palco.jpg" alt="Palco sob uma tenda, com o céu de tecidos pendurado e o painel da Inovaweek ao fundo." loading="lazy"><figcaption>O céu montado no palco da Inovaweek e do Conecta UTFPR, 27/05/2026.</figcaption></figure>
+            <p class="fonte-guia">Fonte: <a href="https://www.utfpr.edu.br/noticias/ponta-grossa/peca-da-utfpr-pg-em-parceria-com-gtc-uepg-conquista-destaque-nacional-no-teatro-cientifico" target="_blank" rel="noopener">notícia da UTFPR</a>, <a href="https://www.instagram.com/reel/DY27orbpCbJ/" target="_blank" rel="noopener">rádio Viraliza UTFPR</a> e registros do GTC/UEPG.</p>
           </div>
         </div>
         <p style="margin-top:18px"><a class="btn contorno" href="#galeria">Assistir aos vídeos das apresentações</a></p>
@@ -426,6 +434,10 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
             <div class="tela"><video controls preload="metadata" poster="img/cena-video-poster.jpg" aria-label="Trecho de cena da peça gravado em 29 de junho de 2026"><source src="video/cena-29-06-2026.mp4" type="video/mp4"></video></div>
             <div class="info"><h3>Trecho de cena</h3><span>Registro de 29/06/2026, UEPG. Vídeo: GTC/UEPG.</span></div>
           </article>
+          <article class="video-card">
+            <div class="tela"><video controls preload="metadata" poster="img/tartarugas-impressao-poster.jpg" aria-label="Impressão 3D das tartarugas entregues aos participantes das entrevistas"><source src="video/tartarugas-impressao-3d.mp4" type="video/mp4"></video></div>
+            <div class="info"><h3>Impressão das tartarugas</h3><span>As tartarugas entregues a quem participou das entrevistas sendo impressas em 3D, a partir do modelo Articulated Sea Turtle, de Jopek Design. 16 s.</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -433,7 +445,6 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
       <div class="container">
         <div class="sec-titulo"><h2>Fotos</h2></div>
         <div class="galeria" id="galeria-grid"></div>
-        <p class="aviso" style="margin-top:18px">Novas fotos das apresentações e das premiações serão incluídas em breve.</p>
       </div>
     </section>
   </div>
@@ -445,13 +456,14 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
       <div class="container duas-col">
         <div class="texto">
           <p class="objetivo"><b>Objetivos 2 e 3 da tese:</b> investigar as concepções do público e as questões CTS que surgem na interação com a peça.</p>
-          <p>Em vez de questionários, as perguntas são feitas pela personagem Tartaruga, antes e depois do espetáculo. Ao final, cada participante recebe uma pequena tartaruga impressa em 3D.</p>
+          <p>Em vez de questionários, as perguntas são feitas pela personagem Tartaruga, antes e depois do espetáculo. Ao final, cada participante recebe uma pequena tartaruga impressa em 3D, feita a partir do modelo articulado <a href="https://www.printables.com/model/748459" target="_blank" rel="noopener">Articulated Sea Turtle</a>, de Jopek Design.</p>
+          <figure><img src="img/tartarugas-3d.jpg" alt="Quatro tartarugas cinza impressas em 3D sobre a mesa." loading="lazy"><figcaption>Tartarugas impressas em 3D. Foto: equipe da pesquisa, 2026.</figcaption></figure>
           <div class="abas" role="tablist" aria-label="Momento da entrevista">
             <button type="button" role="tab" id="aba-antes" aria-selected="true" aria-controls="lista-perguntas">Antes da peça</button>
             <button type="button" role="tab" id="aba-depois" aria-selected="false" aria-controls="lista-perguntas">Depois da peça</button>
           </div>
           <ul class="perguntas" id="lista-perguntas" role="tabpanel"></ul>
-          <p class="aviso">As entrevistas de 2026 estão em análise. Os relatos do público serão publicados aqui depois de anonimizados.</p>
+          <p class="aviso">A análise das entrevistas de 2026 está no capítulo 6 da tese. Para preservar o anonimato dos participantes, os relatos não são publicados aqui.</p>
         </div>
         <div class="texto">
           <figure class="foto-alta"><img src="img/tartaruga-1.jpg" alt="A personagem Tartaruga no palco, de perfil, com o figurino de retalhos de jeans." style="max-height:360px"><figcaption>A personagem Tartaruga. Foto: GTC/UEPG, 29/06/2026.</figcaption></figure>
@@ -655,6 +667,9 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
             <li>“Una pieza de teatro científico inspirada en las ideas de un líder indígena brasileño”. XIX Congreso RedPOP 2025, Puebla, México.</li>
             <li>Iniciações científicas no GTC/UEPG (2024), orientadas por Leila Inês Follmann Freire: criação de figurino (Thayssa Munique de Souza), objetos cênicos (Talita Boldt Rodrigues de Souza) e material digital sobre teatro de temática científica no Paraná (Raylan Gonçalves Marinho).</li>
           </ul>
+          <h2 style="margin-top:20px">No México</h2>
+          <p>Em setembro de 2025, no XIX Congreso RedPOP, em Puebla, a pesquisa foi apresentada e o GTC/UEPG levou ao palco “Coração em Chagas”, com Talicia no elenco e na viola caipira.</p>
+          <figure><img src="img/mexico-redpop.jpg" alt="Três integrantes do GTC/UEPG com figurinos vermelhos, uma delas com viola, entre bandeiras do México." loading="lazy" style="max-width:420px"><figcaption>“Coração em Chagas” no XIX Congreso RedPOP, Puebla, México. Foto: GTC/UEPG, 2025.</figcaption></figure>
         </div>
         <div class="texto">
           <h2>Grupo de Teatro Científico da UEPG</h2>
@@ -665,6 +680,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
             <li><a href="https://www.utfpr.edu.br/noticias/ponta-grossa/peca-da-utfpr-pg-em-parceria-com-gtc-uepg-conquista-destaque-nacional-no-teatro-cientifico" target="_blank" rel="noopener">Peça da UTFPR-PG em parceria com GTC/UEPG conquista destaque nacional no teatro científico</a>. UTFPR, notícias de Ponta Grossa.</li>
             <li><a href="https://www2.uepg.br/fenata/52-programacao/" target="_blank" rel="noopener">Programação do 52º Fenata</a>. UEPG, 2024.</li>
             <li><a href="https://arede.info/mix/611852/53-edicao-do-fenata-continua-nesta-terca-com-denise-stoklos" target="_blank" rel="noopener">53ª edição do Fenata continua nesta terça com Denise Stoklos</a>. aRede, 11 nov. 2025.</li>
+            <li><a href="https://www.instagram.com/reel/DY27orbpCbJ/" target="_blank" rel="noopener">Sete ensaios depois do fim do mundo no Conecta UTFPR</a>. Rádio Viraliza UTFPR, Instagram, 27 maio 2026.</li>
           </ul>
         </div>
       </div>
@@ -789,14 +805,32 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
 
   /* ---------- galeria com navegação ---------- */
   var fotos = [
-    ['img/palco-3.jpg', 'Atores em cena diante do cenário de caixas de papelão, sob o céu de tecidos azuis.', 'Os ensaios em cena: cenário de papelão e o céu suspenso.', ''],
-    ['img/palco-2.jpg', 'Cena escura com o céu de tecidos e plásticos suspenso sobre os atores.', 'O céu desce a cada ensaio.', ''],
-    ['img/tartaruga-2.jpg', 'A personagem Tartaruga de frente, braços abertos, carapaça clara sobre o figurino de jeans.', 'O figurino da Tartaruga.', 'alta'],
-    ['img/palco-1.jpg', 'Palco escuro com três atores iluminados e o céu suspenso acima deles.', 'Luz de cena: o céu suspenso.', ''],
-    ['img/tartaruga-1.jpg', 'A personagem Tartaruga no palco, de perfil, com o figurino de retalhos de jeans.', 'A Tartaruga de perfil.', 'alta'],
-    ['img/palco-4.jpg', 'Palco quase todo escuro, com o céu de tecidos iluminado no alto e o cenário de papelão.', 'Luz baixa sobre o cenário.', ''],
-    ['img/tartaruga-3.jpg', 'A personagem Tartaruga em cena, com os braços abertos, diante do cenário.', 'A Tartaruga em cena.', 'alta'],
-    ['img/gtc-uepg.jpg', 'Banner do Grupo de Teatro Científico da UEPG na entrada do auditório.', 'Grupo de Teatro Científico da UEPG.', '']
+    ['img/palco-3.jpg', 'Atores em cena diante do cenário de caixas de papelão, sob o céu de tecidos azuis.', 'Os ensaios em cena: cenário de papelão e o céu suspenso.', '', 'GTC/UEPG, 29/06/2026'],
+    ['img/palco-2.jpg', 'Cena escura com o céu de tecidos e plásticos suspenso sobre os atores.', 'O céu desce a cada ensaio.', '', 'GTC/UEPG, 29/06/2026'],
+    ['img/tartaruga-2.jpg', 'A personagem Tartaruga de frente, braços abertos, carapaça clara sobre o figurino de jeans.', 'O figurino da Tartaruga.', 'alta', 'GTC/UEPG, 29/06/2026'],
+    ['img/palco-1.jpg', 'Palco escuro com três atores iluminados e o céu suspenso acima deles.', 'Luz de cena: o céu suspenso.', '', 'GTC/UEPG, 29/06/2026'],
+    ['img/tartaruga-1.jpg', 'A personagem Tartaruga no palco, de perfil, com o figurino de retalhos de jeans.', 'A Tartaruga de perfil.', 'alta', 'GTC/UEPG, 29/06/2026'],
+    ['img/palco-4.jpg', 'Palco quase todo escuro, com o céu de tecidos iluminado no alto e o cenário de papelão.', 'Luz baixa sobre o cenário.', '', 'GTC/UEPG, 29/06/2026'],
+    ['img/tartaruga-3.jpg', 'A personagem Tartaruga em cena, com os braços abertos, diante do cenário.', 'A Tartaruga em cena.', 'alta', 'GTC/UEPG, 29/06/2026'],
+    ['img/gtc-uepg.jpg', 'Banner do Grupo de Teatro Científico da UEPG na entrada do auditório.', 'Grupo de Teatro Científico da UEPG.', '', 'GTC/UEPG, 29/06/2026'],
+    ['img/estreia-5.jpg', 'Palco com três atores diante do cenário de papelão e do céu de tecidos; a plateia aparece de costas, em silhueta.', 'Estreia no XVIII Encontro Paranaense de Educação Ambiental, Ponta Grossa.', '', 'Fabio Vicente/GTC-UEPG, 19/09/2024'],
+    ['img/estreia-4.jpg', 'Três atores em cena, com figurinos de retalhos de jeans: um à frente, uma sentada num caixote e outra ao fundo, de braços abertos.', 'Os três atores em cena na estreia.', '', 'Fabio Vicente/GTC-UEPG, 19/09/2024'],
+    ['img/estreia-1.jpg', 'O Aluno e a Orientadora sentados na beira do palco, ela de olhos fechados.', 'O Aluno e a Orientadora na beira do palco.', 'alta', 'Fabio Vicente/GTC-UEPG, 19/09/2024'],
+    ['img/estreia-3.jpg', 'Atriz de pé no palco, com figurino de retalhos de jeans e trança, fazendo sinais com as mãos.', 'A Zeladora em cena.', 'alta', 'Fabio Vicente/GTC-UEPG, 19/09/2024'],
+    ['img/estreia-2.jpg', 'Cena em luz azul com personagens mascarados, um deles com máscara de rato, e o céu de tecidos caído no chão.', 'O céu cai sobre a cena, em luz azul.', '', 'Fabio Vicente/GTC-UEPG, 19/09/2024'],
+    ['img/elenco-retrato.jpg', 'Ator com colete de retalhos de jeans e maquiagem no rosto, diante do cenário de papelão.', 'Figurino e caracterização.', 'alta', 'GTC/UEPG'],
+    ['img/tartaruga-retrato.jpg', 'Retrato da atriz com o figurino da Tartaruga: capuz de jeans com olhos e carapaça clara com folhas.', 'A personagem Tartaruga, que conduz as entrevistas.', 'alta', 'GTC/UEPG, 2026'],
+    ['img/pinhais-premio-1.jpg', 'Três atores com figurinos de retalhos de jeans seguram o troféu e o certificado do festival.', 'Prêmio de melhor caracterização no 18º Festival de Teatro de Pinhais.', '', 'GTC/UEPG, 2025'],
+    ['img/pinhais-premio-2.jpg', 'Os três atores, de corpo inteiro, com o troféu e o certificado.', 'Elenco com o troféu em Pinhais.', 'alta', 'GTC/UEPG, 2025'],
+    ['img/premio-caracterizacao.jpg', 'Cartaz do prêmio de melhor caracterização, com o troféu do 18º Festival de Teatro de Pinhais e fotos dos figurinos e máscaras.', 'Prêmio de melhor caracterização, categoria técnico-universitária.', 'alta', 'arte do GTC/UEPG, 2025'],
+    ['img/premio-indicacao.jpg', 'Cartaz da indicação a melhor espetáculo da mostra técnico-universitária, com foto da Orientadora em cena.', 'Indicação a melhor espetáculo da mostra técnico-universitária.', 'alta', 'arte do GTC/UEPG, 2025'],
+    ['img/cartaz-fenata.jpg', 'Cartaz do 52º Fenata: Grupo de Teatro Científico da UEPG apresenta Sete ensaios depois do fim do mundo.', 'Cartaz da apresentação no 52º Fenata.', '', 'arte do GTC/UEPG, 2024'],
+    ['img/cartaz-dramaturgia.jpg', 'Cartaz com os nomes da dramaturgia e a pergunta: o que podemos fazer quando o céu pesa sobre nós?', 'Dramaturgia e a pergunta da peça.', '', 'arte do GTC/UEPG; foto de Fabio Vicente'],
+    ['img/conecta-palco.jpg', 'Palco sob uma tenda, com o céu de tecidos pendurado e o painel da Inovaweek ao fundo.', 'O céu montado no palco da Inovaweek e do Conecta UTFPR.', '', 'equipe da pesquisa, 27/05/2026'],
+    ['img/conecta-equipe.jpg', 'Duas integrantes da equipe sorriem diante do palco do Conecta UTFPR.', 'A equipe no Conecta UTFPR.', '', 'equipe da pesquisa, 27/05/2026'],
+    ['img/tartarugas-3d.jpg', 'Quatro tartarugas cinza impressas em 3D sobre a mesa.', 'Tartarugas impressas em 3D, entregues a quem participou das entrevistas.', '', 'equipe da pesquisa, 2026'],
+    ['img/modelo-tartaruga.jpg', 'Duas tartarugas articuladas, uma marrom e outra clara, na página do modelo para impressão 3D.', 'O modelo usado: Articulated Sea Turtle, de Jopek Design (Printables).', '', 'reprodução da página do modelo'],
+    ['img/mexico-redpop.jpg', 'Três integrantes do GTC/UEPG com figurinos vermelhos, uma delas com viola, entre bandeiras do México.', '“Coração em Chagas” no XIX Congreso RedPOP, Puebla, México.', '', 'GTC/UEPG, 2025']
   ];
   var g = document.getElementById('galeria-grid');
   g.innerHTML = fotos.map(function (f, i) { return '<button type="button" class="' + f[3] + '" data-i="' + i + '" aria-label="Ampliar foto ' + (i + 1) + ' de ' + fotos.length + ': ' + f[2] + '"><img src="' + f[0] + '" alt="' + f[1] + '" loading="lazy"></button>'; }).join('');
@@ -807,7 +841,7 @@ footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.15);
     atual = (i + fotos.length) % fotos.length;
     var f = fotos[atual];
     lbi.src = f[0]; lbi.alt = f[1];
-    lbc.textContent = f[2] + ' Foto: GTC/UEPG, 29/06/2026.';
+    lbc.textContent = f[2] + ' Crédito: ' + f[4] + '.';
     cont.textContent = 'Foto ' + (atual + 1) + ' de ' + fotos.length;
     Array.prototype.forEach.call(mini.children, function (b, j) { if (j === atual) { b.setAttribute('aria-current', 'true'); b.scrollIntoView({ block: 'nearest', inline: 'center' }); } else b.removeAttribute('aria-current'); });
   }
